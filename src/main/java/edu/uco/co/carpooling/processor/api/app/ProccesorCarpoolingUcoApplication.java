@@ -1,13 +1,13 @@
-package edu.uco.co.carpooling.procesador.app;
+package edu.uco.co.carpooling.processor.api.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProcesadorCarpoolingUcoApplication {
+public class ProccesorCarpoolingUcoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProcesadorCarpoolingUcoApplication.class, args);
+		SpringApplication.run(ProccesorCarpoolingUcoApplication.class, args);
 	}
 
 }
