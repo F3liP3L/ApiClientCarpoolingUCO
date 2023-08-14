@@ -1,1 +1,11 @@
 rootProject.name = 'ProcesadorCarpoolingUCO'
+
+include 'CarpoolingApi'
+include 'CrossCutting'
+include 'CarpoolingCrossCutting'
+include 'CarpoolingDTO'
+include 'CarpoolingService'
+include 'CarpoolingInfrastructure'
+include 'CarpoolingEntity'
+
+
