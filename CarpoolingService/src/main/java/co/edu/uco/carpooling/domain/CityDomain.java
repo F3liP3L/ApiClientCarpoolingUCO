@@ -10,7 +10,6 @@ public class CityDomain {
 
     private UUID id;
     private String name;
-    private StateDTO state;
 
     public UUID getId() {
         return id;
@@ -24,11 +23,4 @@ public class CityDomain {
 
     public void setName(String name) {this.name = UtilText.getUtilText().trim(name);}
 
-    public StateDTO getState() {
-        return state;
-    }
-
-    public void setState(StateDTO state) {
-        this.state = state;
-    }
 }
