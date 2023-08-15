@@ -16,15 +16,15 @@ public class UtilUUID {
         return INSTANCE;
     }
 
-    public static final UUID getDefaultUUID(final UUID uuid) {
+    public final UUID getDefaultUUID(final UUID uuid) {
         return getUtilObject().getDefaultIsNull(uuid, DEFAULT_UUID);
     }
 
-    public static final boolean isEqual(final UUID uuidOne, final UUID uuidTwo) {
+    public final boolean isEqual(final UUID uuidOne, final UUID uuidTwo) {
         return getDefaultUUID(uuidOne).equals(getDefaultUUID(uuidTwo));
     }
 
-    public static final UUID getNewUUID() {
+    public final UUID getNewUUID() {
         UUID uuid;
         do {
             uuid = UUID.randomUUID();
@@ -32,7 +32,7 @@ public class UtilUUID {
         return uuid;
     }
 
-    public static final UUID getUUIDFromString(final String uuidString) {
+    public final UUID getUUIDFromString(final String uuidString) {
         UUID uuid = DEFAULT_UUID;
         if(!isNull(getStringToUUID(uuidString)) || ! getUtilText().isEmpty(getUtilText().trim(uuidString))) {
             try {
@@ -46,7 +46,7 @@ public class UtilUUID {
         return uuid;
     }
 
-    public static final String getStringFromUUID(final UUID uuid) {
+    public final String getStringFromUUID(final UUID uuid) {
         String uuidString = DEFAULT_UUID_STRING;
         if(!isNull(uuid)) {
             uuidString = uuid.toString();
@@ -58,6 +58,6 @@ public class UtilUUID {
         return UUID.fromString(uuid);
     }
 
-    public static boolean isNull(UUID value) {
+    public boolean isNull(UUID value) {
         return UtilObject.getUtilObject().isNull(value);}
 }

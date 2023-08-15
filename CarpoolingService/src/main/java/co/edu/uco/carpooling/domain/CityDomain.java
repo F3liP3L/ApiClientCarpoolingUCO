@@ -4,7 +4,7 @@ import co.edu.uco.crosscutting.util.UtilText;
 
 import java.util.UUID;
 
-import static co.edu.uco.crosscutting.util.UtilUUID.getDefaultUUID;
+import static co.edu.uco.crosscutting.util.UtilUUID.getUtilUUID;
 
 public class CityDomain {
 
@@ -16,7 +16,7 @@ public class CityDomain {
     }
 
     public void setId(UUID id) {
-        this.id = getDefaultUUID(id);
+        this.id = getUtilUUID().getDefaultUUID(id);
     }
 
     public String getName() {return name;}
