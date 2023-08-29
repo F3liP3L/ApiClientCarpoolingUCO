@@ -10,9 +10,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.hibernate.validator:hibernate-validator'
+
     // Own modules
     implementation project(':CarpoolingCrossCutting')
     implementation project(':CrossCutting')
+    implementation project(':CarpoolingEntity')
 
 }
 
