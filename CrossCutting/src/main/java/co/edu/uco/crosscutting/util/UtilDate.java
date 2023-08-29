@@ -10,7 +10,7 @@ public class UtilDate {
 
     private static final DateTimeFormatter timeAndDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-    private static final LocalDateTime TIME = LocalDateTime.now();
+    public static final LocalDateTime TIME = LocalDateTime.now();
 
     private static final UtilDate INSTANCE = new UtilDate();
 
