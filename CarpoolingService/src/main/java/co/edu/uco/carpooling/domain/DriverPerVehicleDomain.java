@@ -5,9 +5,6 @@ import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.util.UUID;
 
-import static co.edu.uco.crosscutting.util.UtilUUID.getDefaultUUID;
-import static co.edu.uco.crosscutting.util.UtilUUID.getNewUUID;
-
 public class DriverPerVehicleDomain {
     private UUID id;
     private DriverDomain driver;
@@ -24,7 +21,7 @@ public class DriverPerVehicleDomain {
     public DriverPerVehicleDomain() {
         setVehicle(VehicleDomain.createNewVehicle());
         setDriver(DriverDomain.createNewDriver());
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.getUtilUUID().getNewUUID());
         setDriverPerVehicleStatus(StatusDomain.createNewStatus());
     }
 
@@ -33,7 +30,7 @@ public class DriverPerVehicleDomain {
     }
 
     public void setId(UUID id) {
-        this.id = id == null ? getNewUUID() : getDefaultUUID(id);
+        this.id = UtilUUID.getUtilUUID().getDefaultUUID(id);
     }
 
     public DriverDomain getDriver() {
