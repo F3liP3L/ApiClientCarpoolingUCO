@@ -5,20 +5,17 @@ import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.util.UUID;
 
-import static co.edu.uco.crosscutting.util.UtilUUID.getDefaultUUID;
-import static co.edu.uco.crosscutting.util.UtilUUID.getNewUUID;
-
 public class StatusDTO {
     private UUID id;
     private String status;
 
     public StatusDTO(UUID id, String status) {
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.getUtilUUID().getNewUUID());
         setStatus(UtilText.EMPTY);
     }
 
     public StatusDTO() {
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.getUtilUUID().getNewUUID());
         setStatus(UtilText.EMPTY);
     }
 
@@ -31,7 +28,7 @@ public class StatusDTO {
     }
 
     public void setId(UUID id) {
-        this.id = id == null ? getNewUUID() : getDefaultUUID(id);
+        this.id = UtilUUID.getUtilUUID().getDefaultUUID(id);
     }
 
     public String getStatus() {

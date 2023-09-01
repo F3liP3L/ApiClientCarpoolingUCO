@@ -1,17 +1,16 @@
 package co.edu.uco.crosscutting.util;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Period;
-import java.time.ZoneId;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 
 public class UtilDate {
 
-    private static final Time TIME = Time.valueOf(LocalTime.now());
+    private static final DateTimeFormatter timeAndDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+    public static final LocalDateTime TIME = LocalDateTime.now();
 
     private static final UtilDate INSTANCE = new UtilDate();
 
@@ -27,11 +26,11 @@ public class UtilDate {
         return getUtilObject().getDefaultIsNull(value, new Date());
     }
 
-
-    public Time getDefaultTime(Time value, Time defaultValue) {
+    public LocalDateTime getDefaultTime(LocalDateTime value, LocalDateTime defaultValue) {
         return getUtilObject().getDefaultIsNull(value,defaultValue);
     }
-    public Time getDefaultTimeIfNull(Time value) {return getDefaultTime(value,TIME);
+    public LocalDateTime getDefaultTimeIfNull(LocalDateTime value) {
+        return getDefaultTime(value,TIME);
     }
 
     public boolean isBetween(Date date, Date init, Date end) {
@@ -60,6 +59,14 @@ public class UtilDate {
 
     public LocalDate getDateALocalDate(Date date) {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public Date getLocalDataTimeADate(LocalDateTime dateTime) {
+        return Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public LocalDateTime getDateALocalDateTime(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     public boolean isOfLegalAge(Date birthDate) {

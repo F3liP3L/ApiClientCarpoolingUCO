@@ -7,9 +7,6 @@ import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.util.UUID;
 
-import static co.edu.uco.crosscutting.util.UtilUUID.getDefaultUUID;
-import static co.edu.uco.crosscutting.util.UtilUUID.getNewUUID;
-
 
 public class UserDTO {
     private UUID id;
@@ -34,7 +31,7 @@ public class UserDTO {
     }
 
     public UserDTO() {
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.getUtilUUID().getNewUUID());
         setDni(UtilText.EMPTY);
         setFirstName(UtilText.EMPTY);
         setSecondName(UtilText.EMPTY);
@@ -49,7 +46,7 @@ public class UserDTO {
     }
 
     public void setId(UUID id) {
-        this.id = id == null ? getNewUUID() : getDefaultUUID(id);
+        this.id = UtilUUID.getUtilUUID().getDefaultUUID(id);
     }
 
     public String getDni() {

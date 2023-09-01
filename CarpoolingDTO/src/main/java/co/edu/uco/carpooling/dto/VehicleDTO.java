@@ -7,9 +7,6 @@ import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.util.UUID;
 
-import static co.edu.uco.crosscutting.util.UtilUUID.getDefaultUUID;
-import static co.edu.uco.crosscutting.util.UtilUUID.getNewUUID;
-
 public class VehicleDTO {
     private UUID id;
     private String plate;
@@ -24,7 +21,7 @@ public class VehicleDTO {
     }
 
     public VehicleDTO() {
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.getUtilUUID().getNewUUID());
         setPlate(UtilText.EMPTY);
         setCapacity(UtilNumeric.ZERO);
         setOwner(DriverDTO.createNewDriver());
@@ -39,7 +36,7 @@ public class VehicleDTO {
     }
 
     public void setId(UUID id) {
-        this.id = id == null ? getNewUUID() : getDefaultUUID(id);
+        this.id = UtilUUID.getUtilUUID().getDefaultUUID(id);
     }
 
     public String getPlate() {
