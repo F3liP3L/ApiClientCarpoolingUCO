@@ -1,9 +1,12 @@
-package co.edu.uco.carpooling.domain;
+package co.edu.uco.carpooling.service.domain;
 
 import co.edu.uco.carpooling.dto.AuthorizedCategoryDTO;
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilText;
-public class DriverDomain extends UserDomain {
+import lombok.Getter;
+
+@Getter
+public class DriverDomain extends CustomerDomain {
     private String licenseNumber;
     private AuthorizedCategoryDTO authorizedCategory;
 
@@ -23,16 +26,8 @@ public class DriverDomain extends UserDomain {
         return new DriverDomain();
     }
 
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
-
     public void setLicenseNumber(String licenseNumber) {
         this.licenseNumber = UtilText.getUtilText().trim(licenseNumber);
-    }
-
-    public AuthorizedCategoryDTO getAuthorizedCategory() {
-        return authorizedCategory;
     }
 
     public void setAuthorizedCategory(AuthorizedCategoryDTO authorizedCategory) {

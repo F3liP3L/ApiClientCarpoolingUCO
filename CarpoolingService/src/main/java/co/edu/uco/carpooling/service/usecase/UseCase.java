@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.usecase;
+package co.edu.uco.carpooling.service.usecase;
 
 public interface UseCase <D>{
     void execute(D domain);

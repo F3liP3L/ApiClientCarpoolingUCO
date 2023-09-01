@@ -1,17 +1,23 @@
 package co.edu.uco.carpooling.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
-public class DriverEntity extends UserEntity{
+@Data
+@Table(name = "driver")
+public class DriverEntity extends CustomerEntity {
+    @Column(name = "license")
     private String licenseNumber;
     @ManyToOne
+    @JoinColumn(name = "authorized_category")
     private AuthorizedCategoryEntity authorizedCategory;
     @Id
+    @JoinColumn(name = "user")
     private UUID id;
 
     @Override
@@ -22,21 +28,5 @@ public class DriverEntity extends UserEntity{
     @Override
     public UUID getId() {
         return id;
-    }
-
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
-
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
-    }
-
-    public AuthorizedCategoryEntity getAuthorizedCategory() {
-        return authorizedCategory;
-    }
-
-    public void setAuthorizedCategory(AuthorizedCategoryEntity authorizedCategory) {
-        this.authorizedCategory = authorizedCategory;
     }
 }

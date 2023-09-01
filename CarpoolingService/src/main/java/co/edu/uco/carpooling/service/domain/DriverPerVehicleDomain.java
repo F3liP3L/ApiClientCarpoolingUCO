@@ -1,13 +1,15 @@
-package co.edu.uco.carpooling.domain;
+package co.edu.uco.carpooling.service.domain;
 
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilUUID;
+import lombok.Getter;
 
 import java.util.UUID;
 
 import static co.edu.uco.crosscutting.util.UtilUUID.getDefaultUUID;
 import static co.edu.uco.crosscutting.util.UtilUUID.getNewUUID;
 
+@Getter
 public class DriverPerVehicleDomain {
     private UUID id;
     private DriverDomain driver;
@@ -28,32 +30,16 @@ public class DriverPerVehicleDomain {
         setDriverPerVehicleStatus(StatusDomain.createNewStatus());
     }
 
-    public UUID getId() {
-        return id;
-    }
-
     public void setId(UUID id) {
         this.id = id == null ? getNewUUID() : getDefaultUUID(id);
-    }
-
-    public DriverDomain getDriver() {
-        return driver;
     }
 
     public void setDriver(DriverDomain driver) {
         this.driver = UtilObject.getUtilObject().getDefaultIsNull(driver, DriverDomain.createNewDriver());
     }
 
-    public VehicleDomain getVehicle() {
-        return vehicle;
-    }
-
     public void setVehicle(VehicleDomain vehicle) {
         this.vehicle = UtilObject.getUtilObject().getDefaultIsNull(vehicle, VehicleDomain.createNewVehicle());
-    }
-
-    public StatusDomain getDriverPerVehicleStatus() {
-        return driverPerVehicleStatus;
     }
 
     public void setDriverPerVehicleStatus(StatusDomain driverPerVehicleStatus) {

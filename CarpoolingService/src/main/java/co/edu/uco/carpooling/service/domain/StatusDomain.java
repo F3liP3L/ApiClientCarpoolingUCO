@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.domain;
+package co.edu.uco.carpooling.service.domain;
 
 import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;

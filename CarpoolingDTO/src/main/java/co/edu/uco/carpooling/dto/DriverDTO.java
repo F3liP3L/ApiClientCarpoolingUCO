@@ -2,6 +2,7 @@ package co.edu.uco.carpooling.dto;
 
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilText;
+
 public class DriverDTO extends UserDTO {
     private String licenseNumber;
     private AuthorizedCategoryDTO authorizedCategory;

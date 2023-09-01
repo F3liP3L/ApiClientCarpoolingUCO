@@ -16,15 +16,15 @@ public class UtilUUID {
         return INSTANCE;
     }
 
-    public final UUID getDefaultUUID(final UUID uuid) {
+    public static final UUID getDefaultUUID(final UUID uuid) {
         return getUtilObject().getDefaultIsNull(uuid, DEFAULT_UUID);
     }
 
-    public final boolean isEqual(final UUID uuidOne, final UUID uuidTwo) {
+    public static final boolean isEqual(final UUID uuidOne, final UUID uuidTwo) {
         return getDefaultUUID(uuidOne).equals(getDefaultUUID(uuidTwo));
     }
 
-    public final UUID getNewUUID() {
+    public static final UUID getNewUUID() {
         UUID uuid;
         do {
             uuid = UUID.randomUUID();
