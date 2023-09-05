@@ -24,11 +24,11 @@ public class DriverDomain {
     }
 
     public DriverDomain() {
-        super();
+        super();/*
         setId(UtilUUID.getNewUUID());
         setLicenseNumber(EMPTY);
         setAuthorizedCategory(AuthorizedCategoryDomain.createNewAuthorizedCategory());
-        setUser(CustomerDomain.build());
+        setUser(CustomerDomain.build());*/
     }
 
     public static DriverDomain createNewDriver() {

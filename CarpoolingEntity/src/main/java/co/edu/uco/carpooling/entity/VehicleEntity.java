@@ -9,8 +9,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "vehicle")
 public class VehicleEntity {
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     private UUID id;
     @ManyToOne
     @JoinColumn(name = "driver_id")
@@ -19,4 +19,5 @@ public class VehicleEntity {
     private String plate;
     @Column(name = "quota")
     private int capacity;
+
 }

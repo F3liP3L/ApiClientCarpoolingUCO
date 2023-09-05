@@ -1,8 +1,6 @@
 package co.edu.uco.carpooling.dto;
 
 import static co.edu.uco.crosscutting.util.UtilNumeric.ZERO;
-import co.edu.uco.crosscutting.util.UtilObject;
-
 import static co.edu.uco.crosscutting.util.UtilNumeric.getUtilNumeric;
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 import static co.edu.uco.crosscutting.util.UtilText.EMPTY;
@@ -26,7 +24,7 @@ public class VehicleDTO {
     }
 
     public VehicleDTO() {
-        setId(UtilUUID.getDefaultUUID(id));
+        setId(UtilUUID.getNewUUID());
         setPlate(EMPTY);
         setCapacity(ZERO);
         setOwner(DriverDTO.createNewDriver());

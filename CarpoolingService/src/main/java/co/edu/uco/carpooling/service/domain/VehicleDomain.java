@@ -26,6 +26,7 @@ public class VehicleDomain {
     }
 
     public VehicleDomain() {
+        super();
         setId(UtilUUID.getNewUUID());
         setPlate(UtilText.EMPTY);
         setCapacity(UtilNumeric.ZERO);
