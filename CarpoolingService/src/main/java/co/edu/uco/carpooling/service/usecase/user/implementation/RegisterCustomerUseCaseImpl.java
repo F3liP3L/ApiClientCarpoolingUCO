@@ -5,13 +5,13 @@ import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
-import co.edu.uco.carpooling.service.usecase.user.RegisterCustomerCustomerCase;
+import co.edu.uco.carpooling.service.usecase.user.RegisterCustomerUseCase;
 import co.edu.uco.crosscutting.util.UtilUUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegisterCustomerImplService implements RegisterCustomerCustomerCase {
+public class RegisterCustomerUseCaseImpl implements RegisterCustomerUseCase {
 
     @Autowired
     private CustomerRepository customerRepository;
