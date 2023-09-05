@@ -3,7 +3,9 @@ package co.edu.uco.carpooling.api.response.dto;
 import co.edu.uco.carpooling.api.response.enumeration.MessageLevel;
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilText;
+import lombok.ToString;
 
+@ToString
 public class Message {
     private String text;
     private String title;
@@ -48,7 +50,7 @@ public class Message {
     }
 
     public void setText(String text) {
-        if(UtilObject.getUtilObject().isNull(text) || UtilText.EMPTY.intern().equals(UtilText.getUtilText().trim(text))) {
+        if(UtilObject.getUtilObject().isNull(text) || UtilText.EMPTY.equals(UtilText.getUtilText().trim(text))) {
             this.text = UtilText.EMPTY;
         } else {
             this.text = UtilText.getUtilText().trim(text);
@@ -60,7 +62,7 @@ public class Message {
     }
 
     public void setTitle(String title) {
-        if (UtilObject.getUtilObject().isNull(title) || UtilText.EMPTY.intern().equals(UtilText.getUtilText().trim(title))) {
+        if (UtilObject.getUtilObject().isNull(title) || UtilText.EMPTY.equals(UtilText.getUtilText().trim(title))) {
             this.title = UtilText.EMPTY;
         } else {
             this.title = UtilText.getUtilText().trim(title);

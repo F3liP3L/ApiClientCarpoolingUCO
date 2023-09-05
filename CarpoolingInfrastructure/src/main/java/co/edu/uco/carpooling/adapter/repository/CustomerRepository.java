@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.repository;
+package co.edu.uco.carpooling.adapter.repository;
 
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

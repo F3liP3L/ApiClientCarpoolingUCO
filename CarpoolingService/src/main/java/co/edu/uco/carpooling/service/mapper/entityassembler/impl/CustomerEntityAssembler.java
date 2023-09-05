@@ -3,12 +3,12 @@ package co.edu.uco.carpooling.service.mapper.entityassembler.impl;
 import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
-import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssemblerService;
+import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerEntityAssembler implements EntityAssemblerService<CustomerEntity, CustomerDomain, CustomerDTO> {
+public class CustomerEntityAssembler implements EntityAssembler<CustomerEntity, CustomerDomain, CustomerDTO> {
 
     private final ModelMapper modelMapper;
 

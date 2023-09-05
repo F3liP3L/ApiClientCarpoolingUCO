@@ -8,10 +8,7 @@ import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 
 public class UtilDate {
 
-    private static final DateTimeFormatter timeAndDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
     public static final LocalDateTime TIME = LocalDateTime.now();
-
     private static final UtilDate INSTANCE = new UtilDate();
 
     public static UtilDate getUtilDate() {
@@ -35,6 +32,14 @@ public class UtilDate {
 
     public boolean isBetween(Date date, Date init, Date end) {
         return (date.after(init) && date.before(end));
+    }
+
+    public boolean isBefore(Date compare, Date date) {
+        return compare.before(date);
+    }
+
+    public boolean isBefore(Date compare) {
+        return compare.before(getLocalDataTimeADate(TIME));
     }
 
     public boolean isBetweenIncludingInit(Date date, Date init, Date end) {
