@@ -3,7 +3,7 @@ package co.edu.uco.carpooling.api.controller;
 import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.service.facade.user.DeleteUserUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.user.RegisterUserCustomerCaseFacade;
-import co.edu.uco.carpooling.service.usecase.user.implementation.ListCustomerImplService;
+import co.edu.uco.carpooling.service.usecase.user.ListCustomerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ public class CustomerController {
     @Autowired
     private RegisterUserCustomerCaseFacade userUseCaseFacade;
     @Autowired
-    private ListCustomerImplService customerImplService;
+    private ListCustomerUseCase listCustomerUseCase;
     @Autowired
     private DeleteUserUseCaseFacade deleteUserCustomerCaseFacade;
 
