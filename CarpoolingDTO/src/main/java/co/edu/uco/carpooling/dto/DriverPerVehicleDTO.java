@@ -19,9 +19,9 @@ public class DriverPerVehicleDTO {
     }
 
     public DriverPerVehicleDTO() {
+        setId(UtilUUID.getNewUUID());
         setVehicle(VehicleDTO.createNewVehicle());
         setDriver(DriverDTO.createNewDriver());
-        setId(UtilUUID.getUtilUUID().getNewUUID());
         setDriverPerVehicleStatus(StatusDTO.createNewStatus());
     }
 

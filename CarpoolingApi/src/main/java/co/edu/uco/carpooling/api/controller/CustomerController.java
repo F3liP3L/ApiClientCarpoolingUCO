@@ -1,7 +1,7 @@
 package co.edu.uco.carpooling.api.controller;
 
 import co.edu.uco.carpooling.dto.CustomerDTO;
-import co.edu.uco.carpooling.service.facade.user.DeleteUserCustomerCaseFacade;
+import co.edu.uco.carpooling.service.facade.user.DeleteUserUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.user.RegisterUserCustomerCaseFacade;
 import co.edu.uco.carpooling.service.usecase.user.implementation.ListCustomerImplService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/carpooling/customer")
@@ -20,14 +19,14 @@ public class CustomerController {
     @Autowired
     private ListCustomerImplService customerImplService;
     @Autowired
-    private DeleteUserCustomerCaseFacade deleteUserCustomerCaseFacade;
+    private DeleteUserUseCaseFacade deleteUserCustomerCaseFacade;
 
     @GetMapping("/")
     public List<CustomerDTO> sayHello() {
         return customerImplService.execute(Optional.of(CustomerDTO.create()));
         }
 
-    @PostMapping("/create/{customer}")
+    @PostMapping("/create")
     public void createCustomer(@RequestBody CustomerDTO customerDTO) {
         userUseCaseFacade.execute(customerDTO);
     }

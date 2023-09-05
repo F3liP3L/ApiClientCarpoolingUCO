@@ -23,7 +23,7 @@ public class UtilText {
         return getUtilObject().getDefaultIsNull(value, EMPTY);
     }
 
-    public  String trim(String value) {return getDefault(value).trim();}
+    public String trim(String value) {return getDefault(value).trim();}
 
     public boolean isEmpty(String value) {
         return EMPTY.equals(trim(value));

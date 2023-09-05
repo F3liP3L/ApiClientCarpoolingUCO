@@ -7,7 +7,7 @@ import java.util.UUID;
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 import static co.edu.uco.crosscutting.util.UtilText.getUtilText;
 
-public class UtilUUID {
+public final class UtilUUID {
     private static final UtilUUID INSTANCE = new UtilUUID();
     public static final String DEFAULT_UUID_STRING = "00000000-0000-0000-0000-000000000000";
     public static final UUID DEFAULT_UUID = getStringToUUID(DEFAULT_UUID_STRING);

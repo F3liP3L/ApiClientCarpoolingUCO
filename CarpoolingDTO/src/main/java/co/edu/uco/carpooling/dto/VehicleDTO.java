@@ -1,8 +1,13 @@
 package co.edu.uco.carpooling.dto;
 
-import co.edu.uco.crosscutting.util.UtilNumeric;
+import static co.edu.uco.crosscutting.util.UtilNumeric.ZERO;
 import co.edu.uco.crosscutting.util.UtilObject;
-import co.edu.uco.crosscutting.util.UtilText;
+
+import static co.edu.uco.crosscutting.util.UtilNumeric.getUtilNumeric;
+import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
+import static co.edu.uco.crosscutting.util.UtilText.EMPTY;
+import static co.edu.uco.crosscutting.util.UtilText.getUtilText;
+
 import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.util.UUID;
@@ -21,9 +26,9 @@ public class VehicleDTO {
     }
 
     public VehicleDTO() {
-        setId(UtilUUID.getUtilUUID().getNewUUID());
-        setPlate(UtilText.EMPTY);
-        setCapacity(UtilNumeric.ZERO);
+        setId(UtilUUID.getDefaultUUID(id));
+        setPlate(EMPTY);
+        setCapacity(ZERO);
         setOwner(DriverDTO.createNewDriver());
     }
 
@@ -44,7 +49,7 @@ public class VehicleDTO {
     }
 
     public void setPlate(String plate) {
-        this.plate = UtilText.getUtilText().trim(plate);
+        this.plate = getUtilText().trim(plate);
     }
 
     public int getCapacity() {
@@ -52,7 +57,7 @@ public class VehicleDTO {
     }
 
     public void setCapacity(int capacity) {
-        this.capacity = (int) UtilNumeric.getUtilNumeric().getDefault(capacity);
+        this.capacity = (int) getUtilNumeric().getDefault(capacity);
     }
 
     public DriverDTO getOwner() {
@@ -60,6 +65,6 @@ public class VehicleDTO {
     }
 
     public void setOwner(DriverDTO owner) {
-        this.owner = UtilObject.getUtilObject().getDefaultIsNull(owner,DriverDTO.createNewDriver());
+        this.owner = getUtilObject().getDefaultIsNull(owner,DriverDTO.createNewDriver());
     }
 }

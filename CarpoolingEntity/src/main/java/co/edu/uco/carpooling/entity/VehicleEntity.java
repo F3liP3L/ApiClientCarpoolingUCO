@@ -13,7 +13,7 @@ public class VehicleEntity {
     @Id
     private UUID id;
     @ManyToOne
-    @JoinColumn(name = "driver")
+    @JoinColumn(name = "driver_id")
     private DriverEntity owner;
     @Column(name = "plate")
     private String plate;

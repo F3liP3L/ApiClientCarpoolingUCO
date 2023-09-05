@@ -3,23 +3,35 @@ package co.edu.uco.carpooling.service.domain;
 import co.edu.uco.carpooling.dto.AuthorizedCategoryDTO;
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilText;
+import co.edu.uco.crosscutting.util.UtilUUID;
 import lombok.Getter;
+import org.apache.tomcat.util.buf.UEncoder;
 
-@Getter
-public class DriverDomain extends CustomerDomain {
+import java.util.UUID;
+
+import static co.edu.uco.crosscutting.util.UtilText.EMPTY;
+
+public class DriverDomain {
+
+    private UUID id;
     private String licenseNumber;
-    private AuthorizedCategoryDTO authorizedCategory;
+    private AuthorizedCategoryDomain authorizedCategory;
+    private UserDomain user;
 
-    public DriverDomain(String licenseNumber, AuthorizedCategoryDTO authorizedCategory) {
+    public DriverDomain(UUID id, String licenseNumber, AuthorizedCategoryDomain authorizedCategory) {
         super();
+        setId(id);
         setLicenseNumber(licenseNumber);
         setAuthorizedCategory(authorizedCategory);
+        setUser(user);
     }
 
     public DriverDomain() {
         super();
-        setLicenseNumber(UtilText.EMPTY);
-        setAuthorizedCategory(AuthorizedCategoryDTO.createNewAuthorizedCategory());
+        setId(UtilUUID.getNewUUID());
+        setLicenseNumber(EMPTY);
+        setAuthorizedCategory(AuthorizedCategoryDomain.createNewAuthorizedCategory());
+        setUser(UserDomain.build());
     }
 
     public static DriverDomain createNewDriver() {
@@ -30,8 +42,32 @@ public class DriverDomain extends CustomerDomain {
         this.licenseNumber = UtilText.getUtilText().trim(licenseNumber);
     }
 
-    public void setAuthorizedCategory(AuthorizedCategoryDTO authorizedCategory) {
+    public void setAuthorizedCategory(AuthorizedCategoryDomain authorizedCategory) {
         this.authorizedCategory = UtilObject.getUtilObject().getDefaultIsNull(authorizedCategory,
-                AuthorizedCategoryDTO.createNewAuthorizedCategory());
+                AuthorizedCategoryDomain.createNewAuthorizedCategory());
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public AuthorizedCategoryDomain getAuthorizedCategory() {
+        return authorizedCategory;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = UtilUUID.getDefaultUUID(id);
+    }
+
+    public UserDomain getUser() {
+        return user;
+    }
+
+    public void setUser(UserDomain user) {
+        this.user = UtilObject.getUtilObject().getDefaultIsNull(user, UserDomain.build());
     }
 }
