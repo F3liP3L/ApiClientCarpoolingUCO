@@ -1,5 +1,6 @@
 package co.edu.uco.carpooling.service.usecase.user.implementation;
 
+import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.repository.CustomerRepository;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
@@ -15,14 +16,12 @@ public class RegisterCustomerImplService implements RegisterUserUseCase {
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
-    private EntityAssemblerService<CustomerEntity, CustomerDomain>  assemblerService;
+    private EntityAssemblerService<CustomerEntity, CustomerDomain, CustomerDTO>  assemblerService;
 
     @Override
     public void execute(CustomerDomain domain) {
         domain.setId(UtilUUID.getNewUUID());
         CustomerEntity customerEntity = assemblerService.assembleEntity(domain);
-        customerRepository.createCustomer(customerEntity.getId(), customerEntity.getDni(), customerEntity.getFirstName(),
-                customerEntity.getSecondName(), customerEntity.getFirstSurname(),customerEntity.getSecondSurname()
-                , customerEntity.getPassword(), customerEntity.getCompanyEmail(), customerEntity.getPhone(), customerEntity.getRol());
+        customerRepository.save(customerEntity);
     }
 }

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "customer")
 public class CustomerEntity {
     @Id
     @Column(unique = true)
@@ -25,7 +25,7 @@ public class CustomerEntity {
     private String firstSurname;
     @Column(name = "second_surname")
     private String secondSurname;
-    @Column(name = "password")
+    @Column(name = "password_user")
     private String password;
     @Column(name = "email")
     private String companyEmail;

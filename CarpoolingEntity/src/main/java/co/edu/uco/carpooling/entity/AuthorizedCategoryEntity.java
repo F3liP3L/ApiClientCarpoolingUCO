@@ -13,7 +13,6 @@ import java.util.UUID;
 @Table(name = "authorized_category")
 public class AuthorizedCategoryEntity {
     @Id
-    @Column(name = "id")
     private UUID id;
     @Column(name = "category")
     private String category;

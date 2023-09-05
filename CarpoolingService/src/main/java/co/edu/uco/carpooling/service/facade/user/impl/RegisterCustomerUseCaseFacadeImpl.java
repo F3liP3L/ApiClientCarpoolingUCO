@@ -1,6 +1,6 @@
 package co.edu.uco.carpooling.service.facade.user.impl;
 
-import co.edu.uco.carpooling.dto.UserDTO;
+import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
 import co.edu.uco.carpooling.service.facade.user.RegisterUserUseCaseFacade;
 import co.edu.uco.carpooling.service.mapper.dtoassembler.DTOAssembler;
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 public class RegisterCustomerUseCaseFacadeImpl implements RegisterUserUseCaseFacade {
 
     @Autowired
-    private DTOAssembler<UserDTO, CustomerDomain> dtoAssembler;
+    private DTOAssembler<CustomerDTO, CustomerDomain> dtoAssembler;
 
     @Autowired
     private RegisterUserUseCase userUseCase;
 
 
     @Override
-    public void execute(UserDTO dto) {
+    public void execute(CustomerDTO dto) {
         CustomerDomain customerDomain = dtoAssembler.assembleDomain(dto);
         userUseCase.execute(customerDomain);
     }
