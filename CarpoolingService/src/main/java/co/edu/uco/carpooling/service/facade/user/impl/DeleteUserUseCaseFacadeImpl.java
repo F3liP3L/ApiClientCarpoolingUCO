@@ -2,21 +2,20 @@ package co.edu.uco.carpooling.service.facade.user.impl;
 
 import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
-import co.edu.uco.carpooling.service.facade.user.RegisterUserCustomerCaseFacade;
+import co.edu.uco.carpooling.service.facade.user.DeleteUserUseCaseFacade;
 import co.edu.uco.carpooling.service.mapper.dtoassembler.DTOAssembler;
-import co.edu.uco.carpooling.service.usecase.user.RegisterCustomerUseCase;
+import co.edu.uco.carpooling.service.usecase.user.DeleteCustomerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RegisterCustomerCustomerCaseFacadeImpl implements RegisterUserCustomerCaseFacade {
+public class DeleteUserUseCaseFacadeImpl implements DeleteUserUseCaseFacade {
 
     @Autowired
     private DTOAssembler<CustomerDTO, CustomerDomain> dtoAssembler;
 
     @Autowired
-    private RegisterCustomerUseCase userUseCase;
-
+    private DeleteCustomerUseCase userUseCase;
 
     @Override
     public void execute(CustomerDTO dto) {

@@ -1,7 +1,9 @@
 package co.edu.uco.carpooling.service.usecase.user;
 
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
-import co.edu.uco.carpooling.service.usecase.UseCase;
+import co.edu.uco.carpooling.service.usecase.UpdateUseCase;
 
-public interface UpdateCustomerUseCase extends UseCase<CustomerDomain> {
+import java.util.UUID;
+
+public interface UpdateCustomerUseCase extends UpdateUseCase<UUID,CustomerDomain> {
 }

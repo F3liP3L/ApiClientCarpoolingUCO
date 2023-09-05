@@ -9,6 +9,9 @@ import co.edu.uco.carpooling.service.usecase.user.UpdateCustomerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
 
@@ -17,7 +20,21 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
     @Autowired
     private CustomerRepository repository;
     @Override
-    public void execute(CustomerDomain domain) {
-
+    public void execute(UUID uuid, CustomerDomain domain) {
+        Optional<CustomerEntity> customerEntity = repository.findById(uuid);
+        CustomerEntity entity = assemblerService.assembleEntity(domain);
+        customerEntity.ifPresent(customer -> {
+            customer.setId(uuid);
+            customer.setDni(entity.getDni());
+            customer.setFirstName(entity.getFirstName());
+            customer.setSecondName(entity.getSecondName());
+            customer.setFirstSurname(entity.getFirstSurname());
+            customer.setSecondSurname(entity.getSecondSurname());
+            customer.setPassword(entity.getPassword());
+            customer.setCompanyEmail(entity.getCompanyEmail());
+            customer.setPhone(entity.getPhone());
+            customer.setRol(entity.getRol());
+            repository.save(customer);
+        });
     }
 }

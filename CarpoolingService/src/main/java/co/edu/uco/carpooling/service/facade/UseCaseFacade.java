@@ -1,5 +1,5 @@
 package co.edu.uco.carpooling.service.facade;
 
-public interface CustomerCaseFacade<D> {
+public interface UseCaseFacade<D> {
     void execute(D dto);
 }
