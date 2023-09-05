@@ -25,7 +25,6 @@ import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 public class VehicleController {
     @Autowired
     private RegisterVehicleUseCaseFacade facadeCreate;
-
     @PostMapping()
     public ResponseEntity<Response<VehicleDTO>> create(VehicleDTO vehicle) {
         Response<VehicleDTO> response = new Response<>();

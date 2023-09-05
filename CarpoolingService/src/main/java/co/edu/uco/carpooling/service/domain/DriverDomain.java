@@ -1,11 +1,8 @@
 package co.edu.uco.carpooling.service.domain;
 
-import co.edu.uco.carpooling.dto.AuthorizedCategoryDTO;
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
-import lombok.Getter;
-import org.apache.tomcat.util.buf.UEncoder;
 
 import java.util.UUID;
 
@@ -16,7 +13,7 @@ public class DriverDomain {
     private UUID id;
     private String licenseNumber;
     private AuthorizedCategoryDomain authorizedCategory;
-    private UserDomain user;
+    private CustomerDomain user;
 
     public DriverDomain(UUID id, String licenseNumber, AuthorizedCategoryDomain authorizedCategory) {
         super();
@@ -31,7 +28,7 @@ public class DriverDomain {
         setId(UtilUUID.getNewUUID());
         setLicenseNumber(EMPTY);
         setAuthorizedCategory(AuthorizedCategoryDomain.createNewAuthorizedCategory());
-        setUser(UserDomain.build());
+        setUser(CustomerDomain.build());
     }
 
     public static DriverDomain createNewDriver() {
@@ -63,11 +60,11 @@ public class DriverDomain {
         this.id = UtilUUID.getDefaultUUID(id);
     }
 
-    public UserDomain getUser() {
+    public CustomerDomain getUser() {
         return user;
     }
 
-    public void setUser(UserDomain user) {
-        this.user = UtilObject.getUtilObject().getDefaultIsNull(user, UserDomain.build());
+    public void setUser(CustomerDomain user) {
+        this.user = UtilObject.getUtilObject().getDefaultIsNull(user, CustomerDomain.build());
     }
 }

@@ -2,13 +2,13 @@ package co.edu.uco.carpooling.service.mapper.entityassembler.impl;
 
 import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.entity.CustomerEntity;
-import co.edu.uco.carpooling.service.domain.UserDomain;
+import co.edu.uco.carpooling.service.domain.CustomerDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerEntityAssembler implements EntityAssembler<CustomerEntity, UserDomain, CustomerDTO> {
+public class CustomerEntityAssembler implements EntityAssembler<CustomerEntity, CustomerDomain, CustomerDTO> {
 
     private final ModelMapper modelMapper;
 
@@ -17,12 +17,12 @@ public class CustomerEntityAssembler implements EntityAssembler<CustomerEntity, 
     }
 
     @Override
-    public UserDomain assembleDomain(CustomerEntity entity) {
-        return modelMapper.map(entity, UserDomain.class);
+    public CustomerDomain assembleDomain(CustomerEntity entity) {
+        return modelMapper.map(entity, CustomerDomain.class);
     }
 
     @Override
-    public CustomerEntity assembleEntity(UserDomain domain) {
+    public CustomerEntity assembleEntity(CustomerDomain domain) {
         return modelMapper.map(domain, CustomerEntity.class);
     }
 
