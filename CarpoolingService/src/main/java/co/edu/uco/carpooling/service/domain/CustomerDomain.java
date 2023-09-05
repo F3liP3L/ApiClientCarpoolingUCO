@@ -75,7 +75,6 @@ public class CustomerDomain {
     public void setSecondSurname(String secondSurname) {
         this.secondSurname = UtilText.getUtilText().trim(secondSurname);
     }
-
     public void setPassword(String password) {
         this.password = UtilText.getUtilText().trim(password);
     }
