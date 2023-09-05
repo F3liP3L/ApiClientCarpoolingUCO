@@ -4,7 +4,7 @@ import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
 import co.edu.uco.carpooling.service.facade.user.DeleteUserCustomerCaseFacade;
 import co.edu.uco.carpooling.service.mapper.dtoassembler.DTOAssembler;
-import co.edu.uco.carpooling.service.usecase.user.DeleteCustomerCustomerCase;
+import co.edu.uco.carpooling.service.usecase.user.DeleteCustomerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class DeleteUserCustomerCaseFacadeImpl implements DeleteUserCustomerCaseF
     private DTOAssembler<CustomerDTO, CustomerDomain> dtoAssembler;
 
     @Autowired
-    private DeleteCustomerCustomerCase userUseCase;
+    private DeleteCustomerUseCase userUseCase;
 
     @Override
     public void execute(CustomerDTO dto) {
