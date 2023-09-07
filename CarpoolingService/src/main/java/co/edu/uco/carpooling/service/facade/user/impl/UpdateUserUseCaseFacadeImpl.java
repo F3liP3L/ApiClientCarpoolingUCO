@@ -12,7 +12,6 @@ import java.util.UUID;
 
 @Component
 public class UpdateUserUseCaseFacadeImpl implements UpdateUserFacade {
-
     @Autowired
     private DTOAssembler<CustomerDTO, CustomerDomain> dtoAssembler;
     @Autowired

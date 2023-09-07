@@ -6,30 +6,40 @@ import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
-import co.edu.uco.carpooling.service.specification.impl.vehicle.ValidVehicleSpecification;
-import co.edu.uco.carpooling.service.usecase.vehicle.RegisterVehicleUseCase;
+import co.edu.uco.carpooling.service.specification.impl.vehicle.VehicleNotInvalidSpecification;
+import co.edu.uco.carpooling.service.usecase.vehicle.UpdateVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
+import org.modelmapper.internal.bytebuddy.implementation.auxiliary.AuxiliaryType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
-public class RegisterVehicleUseCaseImpl implements RegisterVehicleUseCase {
+public class UpdateVehicleUseCaseImpl implements UpdateVehicleUseCase {
     @Autowired
     private VehicleRepository repository;
     @Autowired
     private EntityAssembler<VehicleEntity, VehicleDomain, VehicleDTO> entityAssembler;
+
     @Autowired
-    private ValidVehicleSpecification specification;
+    private VehicleNotInvalidSpecification specification;
+
     @Override
-    public void execute(VehicleDomain domain) {
+    public void execute(UUID id, VehicleDomain domain) {
         try {
             VehicleEntity entity = entityAssembler.assembleEntity(domain);
-            specification.isSatisfyBy(domain);
-            repository.save(entity);
+            Optional<VehicleEntity> vehicle = repository.findById(id);
+            if (vehicle.isPresent()) {
+                repository.save(entity);
+            }
         } catch (CarpoolingCustomException exception) {
-            throw exception;
+             throw exception;
         } catch (GeneralException exception) {
-            throw CarpoolingCustomException.build("An unexpected error occurred when registering a vehicle.", exception.getMessage(), exception);
+            throw CarpoolingCustomException.build("An unexpected error occurred while trying to update the vehicle information.", exception.getMessage(), exception);
         }
     }
+
 }

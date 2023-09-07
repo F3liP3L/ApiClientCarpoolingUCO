@@ -9,9 +9,14 @@ import org.springframework.stereotype.Component;
 public class ValidVehicleSpecification extends CompositeSpecification<VehicleDomain> {
     @Autowired
     private VehicleNotDefaultSpecification notDefaultSpecification;
+    @Autowired
+    private VehicleExistSpecification existSpecification;
+    @Autowired
+    private VehicleNotInvalidSpecification notInvalidSpecification;
+
     @Override
     public boolean isSatisfyBy(VehicleDomain object) {
-        return notDefaultSpecification.isSatisfyBy(object);
+        return notDefaultSpecification.and(notInvalidSpecification).andNot(existSpecification).isSatisfyBy(object);
     }
 
 

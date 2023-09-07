@@ -4,7 +4,9 @@ import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.VehicleDTO;
+import co.edu.uco.carpooling.service.facade.vehicle.DeleteVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.vehicle.RegisterVehicleUseCaseFacade;
+import co.edu.uco.carpooling.service.facade.vehicle.UpdateVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.usecase.vehicle.FindVehicleUseCaseList;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 
@@ -25,6 +28,10 @@ import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 public class VehicleController {
     @Autowired
     private RegisterVehicleUseCaseFacade facadeCreate;
+    @Autowired
+    private DeleteVehicleUseCaseFacade facadeDelete;
+    @Autowired
+    private UpdateVehicleUseCaseFacade facadeUpdate;
     @Autowired
     private FindVehicleUseCaseList findVehicleUseCaseList;
 
@@ -61,7 +68,7 @@ public class VehicleController {
     @GetMapping()
     public ResponseEntity<Response<List<VehicleDTO>>> findAll() {
         Response<List<VehicleDTO>> response = new Response<>();
-        HttpStatus httpStatus = HttpStatus.CREATED;
+        HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
             response.addData(findVehicleUseCaseList.execute(null));
@@ -70,5 +77,44 @@ public class VehicleController {
             response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected error"));
         }
         return new ResponseEntity<>(response, httpStatus);
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Response<VehicleDTO>> delete(@RequestBody VehicleDTO vehicle) {
+        Response<VehicleDTO> response = new Response<>();
+        ResponseEntity<Response<VehicleDTO>> responseEntity;
+        HttpStatus httpStatus = HttpStatus.OK;
+        try {
+            facadeDelete.execute(vehicle);
+            response.addMessage(Message.createSuccessMessage("The vehicle was successfully removed", "Vehicle successfully removed"));
+            log.info(response.toString());
+        } catch (CarpoolingCustomException exception) {
+            httpStatus = HttpStatus.NOT_FOUND;
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Error deleting vehicle"));
+            log.warn(response.toString());
+        } catch (GeneralException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected Error"));
+            log.error(response.toString());
+        }
+        responseEntity = new ResponseEntity<>(response, httpStatus);
+        return responseEntity;
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Response<VehicleDTO>> update(@PathVariable("id") UUID id, @RequestBody VehicleDTO vehicle) {
+        Response<VehicleDTO> response = new Response<>();
+        ResponseEntity<Response<VehicleDTO>> responseEntity;
+        HttpStatus httpStatus = HttpStatus.OK;
+        response.setData(new ArrayList<>());
+        try {
+            facadeUpdate.execute(id,vehicle);
+            response.addData(vehicle);
+        } catch (CarpoolingCustomException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));
+        }
+        responseEntity = new ResponseEntity<>(response, httpStatus);
+        return responseEntity;
     }
 }
