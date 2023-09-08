@@ -9,15 +9,9 @@ import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import co.edu.uco.carpooling.service.specification.impl.vehicle.VehicleNotInvalidSpecification;
 import co.edu.uco.carpooling.service.usecase.vehicle.UpdateVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.fge.jsonpatch.JsonPatch;
-import com.github.fge.jsonpatch.JsonPatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

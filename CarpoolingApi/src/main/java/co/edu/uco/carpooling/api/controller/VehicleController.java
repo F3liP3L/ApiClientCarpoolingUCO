@@ -4,6 +4,7 @@ import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.VehicleDTO;
+import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.facade.vehicle.DeleteVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.vehicle.RegisterVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.vehicle.UpdateVehicleUseCaseFacade;
@@ -102,21 +103,20 @@ public class VehicleController {
         return responseEntity;
     }
 
-    @PatchMapping(path = "/{id}", consumes ="application/json-patch+json")
-    public ResponseEntity<Response<JsonPatch>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
-        Response<JsonPatch> response = new Response<>();
-        ResponseEntity<Response<JsonPatch>> responseEntity;
+    @PatchMapping(value = "/{id}", consumes ="application/json-patch+json")
+    public ResponseEntity<Response<VehicleEntity>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
+       /* Response<VehicleEntity> response = new Response<>();
+        ResponseEntity<Response<VehicleEntity>> responseEntity;*/
         HttpStatus httpStatus = HttpStatus.OK;
-        response.setData(new ArrayList<>());
+        /*response.setData(new ArrayList<>());*/
         try {
             facadeUpdate.execute(id, vehicle);
-            response.addData(vehicle);
+           // response.addData(vehicle);
         } catch (CarpoolingCustomException exception) {
-            exception.printStackTrace();
             httpStatus = HttpStatus.BAD_REQUEST;
-            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));
+            /*response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));*/
         }
-        responseEntity = new ResponseEntity<>(response, httpStatus);
+        ResponseEntity responseEntity = new ResponseEntity<>(new VehicleEntity(), httpStatus);
         return responseEntity;
     }
 }
