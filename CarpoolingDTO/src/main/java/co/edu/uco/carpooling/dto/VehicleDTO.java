@@ -47,7 +47,7 @@ public class VehicleDTO {
     }
 
     public void setPlate(String plate) {
-        this.plate = getUtilText().trim(plate);
+        this.plate = getUtilText().trim(plate.toUpperCase());
     }
 
     public int getCapacity() {

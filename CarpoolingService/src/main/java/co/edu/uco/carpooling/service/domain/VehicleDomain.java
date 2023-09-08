@@ -42,7 +42,7 @@ public class VehicleDomain {
     }
 
     public void setPlate(String plate) {
-        this.plate = UtilText.getUtilText().trim(plate);
+        this.plate = UtilText.getUtilText().trim(plate.toUpperCase());
     }
 
     public void setCapacity(int capacity) {

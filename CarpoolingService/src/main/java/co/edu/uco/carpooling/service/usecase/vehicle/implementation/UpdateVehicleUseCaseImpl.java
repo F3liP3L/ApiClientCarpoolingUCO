@@ -9,11 +9,14 @@ import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import co.edu.uco.carpooling.service.specification.impl.vehicle.VehicleNotInvalidSpecification;
 import co.edu.uco.carpooling.service.usecase.vehicle.UpdateVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
-import org.modelmapper.internal.bytebuddy.implementation.auxiliary.AuxiliaryType;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,15 +34,14 @@ public class UpdateVehicleUseCaseImpl implements UpdateVehicleUseCase {
     public void execute(UUID id, VehicleDomain domain) {
         try {
             VehicleEntity entity = entityAssembler.assembleEntity(domain);
-            Optional<VehicleEntity> vehicle = repository.findById(id);
-            if (vehicle.isPresent()) {
-                repository.save(entity);
-            }
+            repository.save(entity);
         } catch (CarpoolingCustomException exception) {
              throw exception;
         } catch (GeneralException exception) {
             throw CarpoolingCustomException.build("An unexpected error occurred while trying to update the vehicle information.", exception.getMessage(), exception);
         }
     }
+
+
 
 }

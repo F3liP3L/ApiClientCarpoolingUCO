@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.json.JsonPatch;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -101,16 +102,17 @@ public class VehicleController {
         return responseEntity;
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Response<VehicleDTO>> update(@PathVariable("id") UUID id, @RequestBody VehicleDTO vehicle) {
-        Response<VehicleDTO> response = new Response<>();
-        ResponseEntity<Response<VehicleDTO>> responseEntity;
+    @PatchMapping(path = "/{id}", consumes ="application/json-patch+json")
+    public ResponseEntity<Response<JsonPatch>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
+        Response<JsonPatch> response = new Response<>();
+        ResponseEntity<Response<JsonPatch>> responseEntity;
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            facadeUpdate.execute(id,vehicle);
+            facadeUpdate.execute(id, vehicle);
             response.addData(vehicle);
         } catch (CarpoolingCustomException exception) {
+            exception.printStackTrace();
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));
         }
