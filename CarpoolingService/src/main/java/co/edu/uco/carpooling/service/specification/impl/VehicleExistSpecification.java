@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.service.specification.impl.vehicle;
+package co.edu.uco.carpooling.service.specification.impl;
 
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.specification.CompositeSpecification;

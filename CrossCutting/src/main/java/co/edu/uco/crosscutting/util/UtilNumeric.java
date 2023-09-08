@@ -8,6 +8,8 @@ public class UtilNumeric {
 
     private UtilNumeric() {}
 
+    public static final String ONLY_NUMBERS = "\\d+";
+
     public static UtilNumeric getUtilNumeric() {
         return INSTANCE;
     }

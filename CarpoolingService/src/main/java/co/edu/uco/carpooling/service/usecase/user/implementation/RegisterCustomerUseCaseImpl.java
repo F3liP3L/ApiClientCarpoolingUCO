@@ -5,6 +5,7 @@ import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
+import co.edu.uco.carpooling.service.specification.impl.cutomer.ValidCustomerSpecification;
 import co.edu.uco.carpooling.service.usecase.user.RegisterCustomerUseCase;
 import co.edu.uco.crosscutting.util.UtilUUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,13 @@ public class RegisterCustomerUseCaseImpl implements RegisterCustomerUseCase {
     private CustomerRepository customerRepository;
     @Autowired
     private EntityAssembler<CustomerEntity, CustomerDomain, CustomerDTO> assemblerService;
+    @Autowired
+    private ValidCustomerSpecification validCustomerSpecification;
 
     @Override
     public void execute(CustomerDomain domain) {
         domain.setId(UtilUUID.getNewUUID());
+        validCustomerSpecification.isSatisfyBy(domain);
         CustomerEntity customerEntity = assemblerService.assembleEntity(domain);
         customerRepository.save(customerEntity);
     }
