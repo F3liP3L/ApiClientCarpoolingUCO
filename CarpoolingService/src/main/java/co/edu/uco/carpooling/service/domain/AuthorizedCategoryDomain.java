@@ -22,7 +22,7 @@ public class AuthorizedCategoryDomain {
     }
 
     public AuthorizedCategoryDomain() {
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.DEFAULT_UUID);
         setCategory(UtilText.EMPTY);
         setExpiration(UtilText.EMPTY);
     }

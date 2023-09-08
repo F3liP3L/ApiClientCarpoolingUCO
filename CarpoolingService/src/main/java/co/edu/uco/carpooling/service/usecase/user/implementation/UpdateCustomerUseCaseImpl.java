@@ -24,7 +24,6 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
         Optional<CustomerEntity> customerEntity = repository.findById(uuid);
         CustomerEntity entity = assemblerService.assembleEntity(domain);
         customerEntity.ifPresent(customer -> {
-            customer.setId(uuid);
             customer.setDni(entity.getDni());
             customer.setFirstName(entity.getFirstName());
             customer.setSecondName(entity.getSecondName());

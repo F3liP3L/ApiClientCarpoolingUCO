@@ -15,17 +15,17 @@ public class DriverDomain {
     private AuthorizedCategoryDomain authorizedCategory;
     private CustomerDomain user;
 
-    public DriverDomain(UUID id, String licenseNumber, AuthorizedCategoryDomain authorizedCategory) {
+    public DriverDomain(UUID id, String licenseNumber, AuthorizedCategoryDomain authorizedCategory,CustomerDomain customerDomain) {
         super();
         setId(id);
         setLicenseNumber(licenseNumber);
         setAuthorizedCategory(authorizedCategory);
-        setUser(user);
+        setUser(customerDomain);
     }
 
     public DriverDomain() {
         super();
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.DEFAULT_UUID);
         setLicenseNumber(EMPTY);
         setAuthorizedCategory(AuthorizedCategoryDomain.createNewAuthorizedCategory());
         setUser(CustomerDomain.build());

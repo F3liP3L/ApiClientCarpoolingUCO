@@ -17,7 +17,7 @@ public class AuthorizedCategoryDTO {
     }
 
     public AuthorizedCategoryDTO() {
-        setId(UtilUUID.getUtilUUID().getNewUUID());
+        setId(UtilUUID.DEFAULT_UUID);
         setCategory(UtilText.EMPTY);
         setExpiration(UtilText.EMPTY);
     }
