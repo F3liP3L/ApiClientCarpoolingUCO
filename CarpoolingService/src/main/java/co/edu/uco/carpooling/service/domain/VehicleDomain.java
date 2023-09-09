@@ -26,6 +26,7 @@ public class VehicleDomain {
     }
 
     public VehicleDomain() {
+        super();
         setId(UtilUUID.getNewUUID());
         setPlate(UtilText.EMPTY);
         setCapacity(UtilNumeric.ZERO);
@@ -41,7 +42,7 @@ public class VehicleDomain {
     }
 
     public void setPlate(String plate) {
-        this.plate = UtilText.getUtilText().trim(plate);
+        this.plate = UtilText.getUtilText().trim(plate.toUpperCase());
     }
 
     public void setCapacity(int capacity) {

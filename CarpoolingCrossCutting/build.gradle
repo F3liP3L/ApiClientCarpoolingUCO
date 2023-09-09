@@ -5,6 +5,10 @@ dependencies {
 
     implementation 'org.springframework:spring-context'
 
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr353', version: '2.15.2'
+
+
     // Own Proyects
     implementation project(':CrossCutting')
 

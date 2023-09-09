@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 public class RegisterVehicleUseCaseFacadeImpl implements RegisterVehicleUseCaseFacade {
     @Autowired
     private RegisterVehicleUseCase registerVehicleUseCase;
-
     @Autowired
     private DTOAssembler<VehicleDTO, VehicleDomain> dtoAssembler;
     @Override
