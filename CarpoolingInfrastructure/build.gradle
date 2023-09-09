@@ -14,6 +14,9 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     implementation 'org.hibernate.validator:hibernate-validator'
 
+    /* Spring Security */
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
     // Own modules
     implementation project(':CarpoolingCrossCutting')
     implementation project(':CrossCutting')

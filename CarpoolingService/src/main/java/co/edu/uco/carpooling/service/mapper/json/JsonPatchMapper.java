@@ -1,6 +1,8 @@
 package co.edu.uco.carpooling.service.mapper.json;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr353.JSR353Module;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,7 @@ public class JsonPatchMapper<T> implements IJsonMapper<T, T, JsonPatch> {
 
     public JsonPatchMapper(ObjectMapper objectMapper) {
         objectMapper.registerModule(new JSR353Module());
+        objectMapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES, false);
         this.objectMapper = objectMapper;
     }
 

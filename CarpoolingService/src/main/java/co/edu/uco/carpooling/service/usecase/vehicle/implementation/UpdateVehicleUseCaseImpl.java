@@ -21,9 +21,6 @@ public class UpdateVehicleUseCaseImpl implements UpdateVehicleUseCase {
     @Autowired
     private EntityAssembler<VehicleEntity, VehicleDomain, VehicleDTO> entityAssembler;
 
-    @Autowired
-    private VehicleNotInvalidSpecification specification;
-
     @Override
     public void execute(UUID id, VehicleDomain domain) {
         try {
