@@ -1,12 +1,11 @@
 package co.edu.uco.carpooling.service.usecase.vehicle.implementation;
 
-import co.edu.uco.carpooling.adapter.repository.VehicleRepository;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
-import co.edu.uco.carpooling.service.specification.impl.vehicle.VehicleExistSpecification;
+import co.edu.uco.carpooling.service.port.repository.VehicleRepository;
 import co.edu.uco.carpooling.service.usecase.vehicle.DeleteVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ public class DeleteVehicleUseCaseImpl implements DeleteVehicleUseCase {
     private VehicleRepository repository;
     @Autowired
     private EntityAssembler<VehicleEntity, VehicleDomain, VehicleDTO> entityAssembler;
-    @Autowired
-    private VehicleExistSpecification specification;
     @Override
     public void execute(VehicleDomain domain) {
         try {

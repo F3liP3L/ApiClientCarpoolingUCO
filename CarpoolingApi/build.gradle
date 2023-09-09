@@ -17,8 +17,9 @@ dependencies {
 	implementation group: 'org.apache.johnzon', name: 'johnzon-core', version: '1.2.19'
 	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr353', version: '2.15.2'
 
-	/* Spring Security *//*
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'*/
+	/* Spring Security */
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
 	// Own modules
 	implementation project(':CarpoolingCrossCutting')

@@ -16,11 +16,13 @@ dependencies {
 
     /* Spring Security */
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
     // Own modules
     implementation project(':CarpoolingCrossCutting')
     implementation project(':CrossCutting')
     implementation project(':CarpoolingEntity')
+    implementation project(':CarpoolingService')
 
 }
 

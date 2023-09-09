@@ -1,11 +1,11 @@
 package co.edu.uco.carpooling.service.usecase.vehicle.implementation;
 
-import co.edu.uco.carpooling.adapter.repository.VehicleRepository;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
+import co.edu.uco.carpooling.service.port.repository.VehicleRepository;
 import co.edu.uco.carpooling.service.specification.impl.vehicle.ValidVehicleSpecification;
 import co.edu.uco.carpooling.service.usecase.vehicle.RegisterVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
