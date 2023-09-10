@@ -1,6 +1,5 @@
 package co.edu.uco.carpooling.adapter.jwt;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,10 +19,14 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    @Autowired
-    private UserAuthenticationService userAuthenticationService;
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+
+    private final UserAuthenticationService userAuthenticationService;
+    private final JwtRequestFilter jwtRequestFilter;
+
+    public SecurityConfiguration(UserAuthenticationService userAuthenticationService, JwtRequestFilter jwtRequestFilter) {
+        this.userAuthenticationService = userAuthenticationService;
+        this.jwtRequestFilter = jwtRequestFilter;
+    }
 
     @Bean
     public PasswordEncoder byCryptEncoder(){
@@ -44,8 +47,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request.requestMatchers("api/v1/carpooling/auth/**")
                         .permitAll().anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
-                .authenticationProvider(authenticationProvider()).addFilterBefore(
-                        jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

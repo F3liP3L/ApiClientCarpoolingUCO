@@ -18,8 +18,6 @@ dependencies {
 	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr353', version: '2.15.2'
 
 	/* Spring Security */
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
 	// Own modules
 	implementation project(':CarpoolingCrossCutting')
@@ -27,7 +25,7 @@ dependencies {
 	implementation project(':CarpoolingDTO')
 	implementation project(':CarpoolingEntity')
 	implementation project(':CarpoolingService')
-	implementation project(':CarpoolingInfrastructure')
+	//implementation project(':CarpoolingInfrastructure')
 
 }
 

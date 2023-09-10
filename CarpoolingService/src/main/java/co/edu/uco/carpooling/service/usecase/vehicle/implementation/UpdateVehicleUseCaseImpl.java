@@ -5,7 +5,6 @@ import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
-import co.edu.uco.carpooling.service.port.repository.CustomerRepository;
 import co.edu.uco.carpooling.service.usecase.vehicle.UpdateVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;

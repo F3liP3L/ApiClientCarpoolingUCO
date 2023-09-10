@@ -1,30 +1,23 @@
 package co.edu.uco.carpooling.adapter.jwt;
 
-import co.edu.uco.carpooling.adapter.repository.postgressql.CustomerRepositoryPostgresSQL;
+import co.edu.uco.carpooling.adapter.repository.postgressql.impl.CustomerRepositoryJpa;
 import co.edu.uco.carpooling.entity.CustomerEntity;
-import co.edu.uco.carpooling.service.port.jwt.PortUserAuthenticationDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
-@Component
-public class JwtUserAuthenticationDetailsAdapter implements UserAuthenticationService, PortUserAuthenticationDetails<CustomerEntity> {
-    @Autowired
-    private CustomerRepositoryPostgresSQL customerRepository;
-    @Autowired
-    private PasswordEncoder bcryptEncoder;
+@Service
+public class JwtUserAuthenticationDetailsAdapter implements UserAuthenticationService {
 
-    @Override
-    public CustomerEntity save(CustomerEntity userAuthenticate) {
-       userAuthenticate.setPassword(bcryptEncoder.encode(userAuthenticate.getPassword()));
-       return customerRepository.save(userAuthenticate);
+    private final CustomerRepositoryJpa repositoryPostgresSQL;
+
+    public JwtUserAuthenticationDetailsAdapter(CustomerRepositoryJpa repositoryPostgresSQL) {
+        this.repositoryPostgresSQL = repositoryPostgresSQL;
     }
 
     @Override
@@ -32,7 +25,7 @@ public class JwtUserAuthenticationDetailsAdapter implements UserAuthenticationSe
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                Optional<CustomerEntity> customer = customerRepository.findByCompanyEmail(email);
+                Optional<CustomerEntity> customer = repositoryPostgresSQL.findByCompanyEmail(email);
                 if (customer.isEmpty()) {
                     throw new UsernameNotFoundException("The user with the email was not found: ".concat(email));
                 }

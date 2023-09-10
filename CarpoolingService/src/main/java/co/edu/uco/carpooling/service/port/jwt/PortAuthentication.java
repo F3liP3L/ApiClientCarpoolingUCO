@@ -4,6 +4,6 @@ import co.edu.uco.carpooling.service.model.JwtRequest;
 import co.edu.uco.carpooling.service.model.JwtResponse;
 
 public interface PortAuthentication {
-    JwtResponse SignIn(JwtRequest request);
-    JwtResponse SignUp(JwtRequest request);
+    JwtResponse signIn(JwtRequest request);
+    JwtResponse signUp(JwtRequest request);
 }

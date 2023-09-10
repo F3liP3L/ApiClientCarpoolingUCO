@@ -1,42 +1,41 @@
 package co.edu.uco.carpooling.adapter.repository.postgressql.impl;
 
-import co.edu.uco.carpooling.adapter.repository.postgressql.CustomerRepositoryPostgresSQL;
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.port.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository
-public class CustomerRepositoryPostgresSQLImpl implements CustomerRepository {
 
-    @Autowired
-    private CustomerRepositoryPostgresSQL repositoryPostgresSQL;
+@Service
+public class CustomerRepositoryPostgresSQLImpl implements CustomerRepository {
     @Override
     public Optional<CustomerEntity> findById(UUID id) {
-        return repositoryPostgresSQL.findById(id);
+        return Optional.empty();
     }
 
     @Override
     public List<CustomerEntity> findAll() {
-        return repositoryPostgresSQL.findAll();
+        return null;
     }
 
     @Override
     public Optional<CustomerEntity> findByCompanyEmail(String email) {
-        return repositoryPostgresSQL.findByCompanyEmail(email);
+        return Optional.empty();
     }
 
     @Override
     public void deleteById(UUID id) {
-        repositoryPostgresSQL.deleteById(id);
+
     }
 
     @Override
     public CustomerEntity save(CustomerEntity entity) {
-        return repositoryPostgresSQL.save(entity);
+        return null;
     }
 }
+
+
+

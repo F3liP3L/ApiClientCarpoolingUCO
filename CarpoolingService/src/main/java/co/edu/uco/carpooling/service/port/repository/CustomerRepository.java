@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CustomerRepository {
-
     Optional<CustomerEntity> findById(UUID id);
 
     List<CustomerEntity> findAll();
@@ -17,6 +16,5 @@ public interface CustomerRepository {
     void deleteById(UUID id);
 
     CustomerEntity save(CustomerEntity entity);
-
 
 }
