@@ -1,7 +1,5 @@
 package co.edu.uco.carpooling.api.controller;
 
-import co.edu.uco.carpooling.adapter.jwt.JwtAuthenticateAdapter;
-import co.edu.uco.carpooling.adapter.jwt.JwtTokenService;
 import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
