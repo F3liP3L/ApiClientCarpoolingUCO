@@ -100,14 +100,14 @@ public class VehicleController {
     }
 
     @PatchMapping(value = "/{id}", consumes ="application/json-patch+json")
-    public ResponseEntity<Response<VehicleDTO>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
-        Response<VehicleDTO> response = new Response<>();
-        ResponseEntity<Response<VehicleDTO>> responseEntity;
+    public ResponseEntity<Response<JsonPatch>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
+        Response<JsonPatch> response = new Response<>();
+        ResponseEntity<Response<JsonPatch>> responseEntity;
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            facadeUpdate.execute(id, vehicle, new VehicleDTO().createPatch());
-            response.addData(VehicleDTO.create());
+            facadeUpdate.execute(id, vehicle);
+            response.addData(vehicle);
         } catch (CarpoolingCustomException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));
