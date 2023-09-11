@@ -1,11 +1,14 @@
 package co.edu.uco.carpooling.api.controller;
 
+import co.edu.uco.carpooling.adapter.jwt.JwtAuthenticateAdapter;
+import co.edu.uco.carpooling.adapter.jwt.JwtTokenService;
 import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.service.model.JwtRequest;
 import co.edu.uco.carpooling.service.model.JwtResponse;
 import co.edu.uco.carpooling.service.port.jwt.PortAuthentication;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,20 +21,20 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("api/v1/carpooling/auth")
+@Slf4j
 public class AuthenticationController {
+    @Autowired
+    private PortAuthentication authenticateAdapter;
 
-    /*
-    private PortAuthentication authenticate;
-
-    @PostMapping("/signup")
-    public ResponseEntity<Response<JwtResponse>> signup(@RequestBody JwtRequest request) {
+    @PostMapping("/signin")
+    public ResponseEntity<Response<JwtResponse>> signIn(@RequestBody JwtRequest request) {
         ResponseEntity<Response<JwtResponse>> responseEntity;
         Response<JwtResponse> response = new Response<>();
         response.setData(new ArrayList<>());
         HttpStatus httpStatus = HttpStatus.OK;
         try {
-           JwtResponse token = authenticate.signIn(request);
-           response.addData(token);
+            JwtResponse token = authenticateAdapter.signIn(request);
+            response.addData(token);
 
         } catch (CarpoolingCustomException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
@@ -40,6 +43,5 @@ public class AuthenticationController {
         responseEntity = new ResponseEntity<>(response, httpStatus);
         return responseEntity;
     }
-*/
 
 }

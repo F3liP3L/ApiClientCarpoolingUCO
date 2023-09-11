@@ -25,7 +25,7 @@ dependencies {
 	implementation project(':CarpoolingDTO')
 	implementation project(':CarpoolingEntity')
 	implementation project(':CarpoolingService')
-	//implementation project(':CarpoolingInfrastructure')
+	implementation project(':CarpoolingInfrastructure')
 
 }
 
