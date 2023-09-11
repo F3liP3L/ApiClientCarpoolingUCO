@@ -2,12 +2,14 @@ package co.edu.uco.carpooling.service.domain;
 
 import co.edu.uco.crosscutting.util.UtilNumeric;
 import co.edu.uco.crosscutting.util.UtilObject;
-import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
 import lombok.Getter;
 
 import java.util.UUID;
 
+import static co.edu.uco.crosscutting.util.UtilNumeric.ZERO;
+import static co.edu.uco.crosscutting.util.UtilText.EMPTY;
+import static co.edu.uco.crosscutting.util.UtilText.getUtilText;
 import static co.edu.uco.crosscutting.util.UtilUUID.getDefaultUUID;
 import static co.edu.uco.crosscutting.util.UtilUUID.getNewUUID;
 
@@ -26,10 +28,16 @@ public class VehicleDomain {
     }
 
     public VehicleDomain() {
+        super();
         setId(UtilUUID.getNewUUID());
-        setPlate(UtilText.EMPTY);
-        setCapacity(UtilNumeric.ZERO);
+        setPlate(EMPTY);
+        setCapacity(ZERO);
         setOwner(DriverDomain.createNewDriver());
+    }
+
+    private VehicleDomain(UUID id, int capacity) {
+        this.id = id;
+        this.capacity = capacity;
     }
 
     public static VehicleDomain createNewVehicle() {
@@ -41,7 +49,7 @@ public class VehicleDomain {
     }
 
     public void setPlate(String plate) {
-        this.plate = UtilText.getUtilText().trim(plate);
+        this.plate = getUtilText().trim(plate).toUpperCase();
     }
 
     public void setCapacity(int capacity) {
@@ -50,5 +58,9 @@ public class VehicleDomain {
 
     public void setOwner(DriverDomain owner) {
         this.owner = UtilObject.getUtilObject().getDefaultIsNull(owner, DriverDomain.createNewDriver());
+    }
+
+    public VehicleDomain buildPatch() {
+        return new VehicleDomain(id, capacity);
     }
 }

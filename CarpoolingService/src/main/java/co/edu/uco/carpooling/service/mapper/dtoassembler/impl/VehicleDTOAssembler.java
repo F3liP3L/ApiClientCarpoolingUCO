@@ -12,6 +12,7 @@ public class VehicleDTOAssembler implements DTOAssembler<VehicleDTO, VehicleDoma
     private final ModelMapper modelMapper;
 
     public VehicleDTOAssembler() {
+        ModelMapper mapper = new ModelMapper();
         this.modelMapper = new ModelMapper();
     }
 
@@ -24,4 +25,6 @@ public class VehicleDTOAssembler implements DTOAssembler<VehicleDTO, VehicleDoma
     public VehicleDTO assembleDTO(VehicleDomain domain) {
         return modelMapper.map(domain, VehicleDTO.class);
     }
+
+
 }
