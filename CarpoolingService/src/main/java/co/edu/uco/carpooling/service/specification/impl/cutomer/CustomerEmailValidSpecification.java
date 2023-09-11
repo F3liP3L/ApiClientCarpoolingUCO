@@ -15,8 +15,7 @@ public class CustomerEmailValidSpecification extends CompositeSpecification<Cust
 
     @Autowired
     private CustomerRepository repository;
-
-    @Override
+    
     public boolean isSatisfyBy(CustomerDomain object) {
         try {
             Optional<CustomerEntity> response = repository.findEmail(object.getCompanyEmail());

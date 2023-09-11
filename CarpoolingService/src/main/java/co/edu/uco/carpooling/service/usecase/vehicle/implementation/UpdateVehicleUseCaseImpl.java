@@ -6,7 +6,7 @@ import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
-import co.edu.uco.carpooling.service.specification.impl.vehicle.VehicleNotInvalidSpecification;
+import co.edu.uco.carpooling.service.specification.impl.VehicleNotInvalidSpecification;
 import co.edu.uco.carpooling.service.usecase.vehicle.UpdateVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,4 @@ public class UpdateVehicleUseCaseImpl implements UpdateVehicleUseCase {
             throw CarpoolingCustomException.build("An unexpected error occurred while trying to update the vehicle information.", exception.getMessage(), exception);
         }
     }
-
-
-
 }

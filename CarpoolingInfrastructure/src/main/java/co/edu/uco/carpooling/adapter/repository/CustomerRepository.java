@@ -11,12 +11,12 @@ import java.util.UUID;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, UUID> {
 
-    @Query(value = "SELECT * FROM public.customer WHERE phone = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM customer WHERE phone = ?1", nativeQuery = true)
     Optional<CustomerEntity> findPhone(int phone);
 
-    @Query(value = "SELECT * FROM public.customer WHERE dni = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM customer WHERE dni = ?1", nativeQuery = true)
     Optional<CustomerEntity> findDni(String dni);
 
-    @Query(value = "SELECT * FROM public.customer WHERE email = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM customer WHERE email = ?1", nativeQuery = true)
     Optional<CustomerEntity> findEmail(String email);
 }
