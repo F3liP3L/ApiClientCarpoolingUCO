@@ -17,10 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.json.JsonPatch;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 
@@ -73,7 +70,7 @@ public class VehicleController {
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            response.addData(findVehicleUseCaseList.execute(null));
+            response.addData(findVehicleUseCaseList.execute(Optional.of(VehicleDTO.createNewVehicle())));
         } catch (GeneralException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected error"));
