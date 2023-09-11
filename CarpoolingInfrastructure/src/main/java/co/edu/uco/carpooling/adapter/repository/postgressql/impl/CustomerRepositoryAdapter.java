@@ -40,6 +40,16 @@ public class CustomerRepositoryAdapter implements CustomerRepository {
     public CustomerEntity save(CustomerEntity entity) {
         return customerRepositoryPostgresSQL.save(entity);
     }
+
+    @Override
+    public Optional<CustomerEntity> findDni(String dni) {
+        return customerRepositoryPostgresSQL.findByDni(dni);
+    }
+
+    @Override
+    public Optional<CustomerEntity> findPhone(int phone) {
+        return Optional.empty();
+    }
 }
 
 

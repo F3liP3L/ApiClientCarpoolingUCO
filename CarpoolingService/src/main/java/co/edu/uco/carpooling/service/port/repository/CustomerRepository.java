@@ -16,5 +16,6 @@ public interface CustomerRepository {
     void deleteById(UUID id);
 
     CustomerEntity save(CustomerEntity entity);
-
+    Optional<CustomerEntity> findDni(String dni);
+    Optional<CustomerEntity> findPhone(int phone);
 }

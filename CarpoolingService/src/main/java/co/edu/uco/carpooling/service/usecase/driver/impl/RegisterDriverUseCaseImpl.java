@@ -1,10 +1,10 @@
 package co.edu.uco.carpooling.service.usecase.driver.impl;
 
-import co.edu.uco.carpooling.adapter.repository.DriverRepository;
 import co.edu.uco.carpooling.dto.DriverDTO;
 import co.edu.uco.carpooling.entity.DriverEntity;
 import co.edu.uco.carpooling.service.domain.DriverDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
+import co.edu.uco.carpooling.service.port.repository.DriverRepository;
 import co.edu.uco.carpooling.service.specification.impl.driver.ValidDriverSpecification;
 import co.edu.uco.carpooling.service.usecase.driver.RegisterDriverUseCase;
 import co.edu.uco.crosscutting.util.UtilUUID;

@@ -1,9 +1,9 @@
 package co.edu.uco.carpooling.service.specification.impl.cutomer;
 
-import co.edu.uco.carpooling.adapter.repository.CustomerRepository;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.domain.CustomerDomain;
+import co.edu.uco.carpooling.service.port.repository.CustomerRepository;
 import co.edu.uco.carpooling.service.specification.CompositeSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

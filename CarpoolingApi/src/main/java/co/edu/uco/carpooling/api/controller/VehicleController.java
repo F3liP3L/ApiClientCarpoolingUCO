@@ -69,7 +69,7 @@ public class VehicleController {
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            response.addData(findVehicleUseCaseList.execute(Optional.of(VehicleDTO.createNewVehicle())));
+            response.addData(findVehicleUseCaseList.execute(Optional.of(VehicleDTO.create())));
         } catch (GeneralException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected error"));

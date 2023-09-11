@@ -10,4 +10,6 @@ import java.util.UUID;
 @Repository
 public interface CustomerRepositoryPostgresSQL extends JpaRepository<CustomerEntity, UUID> {
     Optional<CustomerEntity> findByCompanyEmail(String email);
+    Optional<CustomerEntity> findByDni(String dni);
+    Optional<CustomerEntity> findByPhone(int phone);
 }

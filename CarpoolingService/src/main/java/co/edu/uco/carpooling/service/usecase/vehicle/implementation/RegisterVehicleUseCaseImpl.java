@@ -7,7 +7,6 @@ import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import co.edu.uco.carpooling.service.specification.impl.ValidVehicleSpecification;
 import co.edu.uco.carpooling.service.port.repository.VehicleRepository;
-import co.edu.uco.carpooling.service.specification.impl.vehicle.ValidVehicleSpecification;
 import co.edu.uco.carpooling.service.usecase.vehicle.RegisterVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
