@@ -1,9 +1,9 @@
 package co.edu.uco.carpooling.service.specification.impl;
 
-import co.edu.uco.carpooling.adapter.repository.DriverRepository;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.crosscutting.util.ConstantsCarpooling;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
+import co.edu.uco.carpooling.service.port.repository.DriverRepository;
 import co.edu.uco.carpooling.service.specification.CompositeSpecification;
 import co.edu.uco.crosscutting.util.UtilNumeric;
 import co.edu.uco.crosscutting.util.UtilText;

@@ -1,15 +1,14 @@
 package co.edu.uco.carpooling.service.specification.impl;
 
-import co.edu.uco.carpooling.adapter.repository.VehicleRepository;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
+import co.edu.uco.carpooling.service.port.repository.VehicleRepository;
 import co.edu.uco.carpooling.service.specification.CompositeSpecification;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Component

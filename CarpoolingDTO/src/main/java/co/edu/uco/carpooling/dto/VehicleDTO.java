@@ -24,13 +24,18 @@ public class VehicleDTO {
     }
 
     public VehicleDTO() {
-        setId(UtilUUID.getNewUUID());
+        setId(UtilUUID.getDefaultUUID(id));
         setPlate(EMPTY);
         setCapacity(ZERO);
         setOwner(DriverDTO.createNewDriver());
     }
 
-    public static VehicleDTO createNewVehicle() {
+    private VehicleDTO(UUID id, int capacity) {
+        this.id = id;
+        this.capacity = capacity;
+    }
+
+    public static VehicleDTO create() {
         return new VehicleDTO();
     }
 
@@ -47,7 +52,7 @@ public class VehicleDTO {
     }
 
     public void setPlate(String plate) {
-        this.plate = getUtilText().trim(plate.toUpperCase());
+        this.plate = getUtilText().trim(plate).toUpperCase();
     }
 
     public int getCapacity() {
@@ -64,5 +69,9 @@ public class VehicleDTO {
 
     public void setOwner(DriverDTO owner) {
         this.owner = getUtilObject().getDefaultIsNull(owner,DriverDTO.createNewDriver());
+    }
+
+    public VehicleDTO createPatch() {
+        return new VehicleDTO(id, capacity);
     }
 }

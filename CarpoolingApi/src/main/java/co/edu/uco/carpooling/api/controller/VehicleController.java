@@ -4,7 +4,6 @@ import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.VehicleDTO;
-import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.facade.vehicle.DeleteVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.vehicle.RegisterVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.vehicle.UpdateVehicleUseCaseFacade;
@@ -101,19 +100,19 @@ public class VehicleController {
     }
 
     @PatchMapping(value = "/{id}", consumes ="application/json-patch+json")
-    public ResponseEntity<Response<VehicleEntity>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
-       /* Response<VehicleEntity> response = new Response<>();
-        ResponseEntity<Response<VehicleEntity>> responseEntity;*/
+    public ResponseEntity<Response<VehicleDTO>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
+        Response<VehicleDTO> response = new Response<>();
+        ResponseEntity<Response<VehicleDTO>> responseEntity;
         HttpStatus httpStatus = HttpStatus.OK;
-        /*response.setData(new ArrayList<>());*/
+        response.setData(new ArrayList<>());
         try {
-            facadeUpdate.execute(id, vehicle);
-           // response.addData(vehicle);
+            facadeUpdate.execute(id, vehicle, new VehicleDTO().createPatch());
+            response.addData(VehicleDTO.create());
         } catch (CarpoolingCustomException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
-            /*response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));*/
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));
         }
-        ResponseEntity responseEntity = new ResponseEntity<>(new VehicleEntity(), httpStatus);
+        responseEntity = new ResponseEntity<>(response, httpStatus);
         return responseEntity;
     }
 }

@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.adapter.repository;
+package co.edu.uco.carpooling.adapter.repository.postgressql;
 
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,6 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface VehicleRepository extends JpaRepository<VehicleEntity, UUID> {
+public interface VehicleRepositoryPostgresSQL extends JpaRepository<VehicleEntity, UUID> {
     Optional<VehicleEntity> findByPlate(String plate);
 }

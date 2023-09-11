@@ -1,10 +1,10 @@
 package co.edu.uco.carpooling.service.usecase.vehicle.implementation;
 
-import co.edu.uco.carpooling.adapter.repository.VehicleRepository;
 import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.domain.VehicleDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
+import co.edu.uco.carpooling.service.port.repository.VehicleRepository;
 import co.edu.uco.carpooling.service.usecase.vehicle.FindVehicleUseCaseList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
