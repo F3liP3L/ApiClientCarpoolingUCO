@@ -52,7 +52,7 @@ public class CustomerController {
         return new ResponseEntity<>(response, httpStatus);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<Response<CustomerDTO>> createCustomer(@RequestBody CustomerDTO customer) {
         Response<CustomerDTO> response = new Response<>();
         ResponseEntity<Response<CustomerDTO>> responseEntity;

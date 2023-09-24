@@ -22,7 +22,6 @@ public class UserInformationDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with the email provided");
         }
         CustomerEntity customer = response.get();
-        customer.setPassword(new BCryptPasswordEncoder().encode(customer.getPassword()));
         return new UserInformationDetails(customer);
     }
 }

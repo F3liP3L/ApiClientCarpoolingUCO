@@ -12,7 +12,6 @@ import javax.json.JsonValue;
 
 public final class UtilObjectMapper {
     private static final UtilObjectMapper INSTANCE = new UtilObjectMapper();
-
     public UtilObjectMapper() {}
 
     public static UtilObjectMapper getUtilObjectMapper() { return INSTANCE; }
