@@ -30,9 +30,11 @@ public class VehicleDTO {
         setOwner(DriverDTO.createNewDriver());
     }
 
-    private VehicleDTO(UUID id, int capacity) {
-        this.id = id;
+    public VehicleDTO(int capacity) {
+        this.id = getId();
         this.capacity = capacity;
+        this.plate = getPlate();
+        this.owner = getOwner();
     }
 
     public static VehicleDTO create() {
@@ -72,6 +74,6 @@ public class VehicleDTO {
     }
 
     public VehicleDTO createPatch() {
-        return new VehicleDTO(id, capacity);
+        return new VehicleDTO(capacity);
     }
 }

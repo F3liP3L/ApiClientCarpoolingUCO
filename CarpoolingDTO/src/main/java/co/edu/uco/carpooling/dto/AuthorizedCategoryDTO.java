@@ -31,7 +31,7 @@ public class AuthorizedCategoryDTO {
     }
 
     public void setId(UUID id) {
-        this.id = UtilUUID.getUtilUUID().getDefaultUUID(id);
+        this.id = UtilUUID.getDefaultUUID(id);
     }
 
     public String getCategory() {

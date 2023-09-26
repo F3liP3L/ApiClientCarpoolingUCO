@@ -30,6 +30,7 @@ public class DriverDTO {
 
     public DriverDTO() {
         super();
+        setId(UtilUUID.getDefaultUUID(id));
         setLicenseNumber(UtilText.EMPTY);
         setAuthorizedCategory(AuthorizedCategoryDTO.createNewAuthorizedCategory());
         setUser(CustomerDTO.create());
