@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.adapter.jwt.model;
+package co.edu.uco.carpooling.infrastructure.adapter.jwt.model;
 
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.port.repository.CustomerRepository;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

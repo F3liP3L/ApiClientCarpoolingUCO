@@ -1,7 +1,7 @@
-package co.edu.uco.carpooling.adapter.jwt;
+package co.edu.uco.carpooling.infrastructure.adapter.jwt;
 
 
-import co.edu.uco.carpooling.adapter.jwt.model.UserInformationDetailsService;
+import co.edu.uco.carpooling.infrastructure.adapter.jwt.model.UserInformationDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

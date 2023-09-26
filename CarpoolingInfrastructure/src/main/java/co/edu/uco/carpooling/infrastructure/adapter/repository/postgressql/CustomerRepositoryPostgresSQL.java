@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.adapter.repository.postgressql;
+package co.edu.uco.carpooling.infrastructure.adapter.repository.postgressql;
 
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

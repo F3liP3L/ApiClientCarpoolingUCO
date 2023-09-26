@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.adapter.jwt;
+package co.edu.uco.carpooling.infrastructure.adapter.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -63,7 +63,7 @@ public class JwtTokenService {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
+                .setExpiration(new Date(System.currentTimeMillis()+1000*60*90))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 

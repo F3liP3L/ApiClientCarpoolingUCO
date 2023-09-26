@@ -1,6 +1,6 @@
-package co.edu.uco.carpooling.adapter.jwt;
+package co.edu.uco.carpooling.infrastructure.adapter.jwt;
 
-import co.edu.uco.carpooling.adapter.jwt.model.UserInformationDetailsService;
+import co.edu.uco.carpooling.infrastructure.adapter.jwt.model.UserInformationDetailsService;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.model.JwtRequest;
