@@ -100,17 +100,23 @@ public class VehicleController {
     }
 
     @PatchMapping(value = "/{id}", consumes ="application/json-patch+json")
-    public ResponseEntity<Response<JsonPatch>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
-        Response<JsonPatch> response = new Response<>();
-        ResponseEntity<Response<JsonPatch>> responseEntity;
+    public ResponseEntity<Response<VehicleDTO>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
+        Response<VehicleDTO> response = new Response<>();
+        ResponseEntity<Response<VehicleDTO>> responseEntity;
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            facadeUpdate.execute(id, vehicle);
-            response.addData(vehicle);
+            VehicleDTO dto = VehicleDTO.create();
+            facadeUpdate.execute(id,vehicle,dto);
+            response.addData(dto);
+            response.addMessage(Message.createSuccessMessage("Your vehicle data has been successfully updated.", "Vehicle successfully update."));
         } catch (CarpoolingCustomException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
-            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Your vehicle could not be upgraded."));
+        } catch (GeneralException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected Error"));
+            log.error(response.toString());
         }
         responseEntity = new ResponseEntity<>(response, httpStatus);
         return responseEntity;

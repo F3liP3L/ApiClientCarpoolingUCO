@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.adapter.repository.postgressql.impl;
+package co.edu.uco.carpooling.infrastructure.adapter.repository.postgressql;
 
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,7 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface CustomerRepositoryJpa extends JpaRepository<CustomerEntity, UUID> {
-
+public interface CustomerRepositoryPostgresSQL extends JpaRepository<CustomerEntity, UUID> {
     Optional<CustomerEntity> findByCompanyEmail(String email);
+    Optional<CustomerEntity> findByDni(String dni);
+    Optional<CustomerEntity> findByPhone(int phone);
 }

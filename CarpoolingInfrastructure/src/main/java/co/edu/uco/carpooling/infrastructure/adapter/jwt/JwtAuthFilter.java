@@ -1,6 +1,6 @@
-package co.edu.uco.carpooling.adapter.jwt;
+package co.edu.uco.carpooling.infrastructure.adapter.jwt;
 
-import co.edu.uco.carpooling.adapter.jwt.model.UserInformationDetailsService;
+import co.edu.uco.carpooling.infrastructure.adapter.jwt.model.UserInformationDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

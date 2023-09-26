@@ -1,6 +1,6 @@
-package co.edu.uco.carpooling.adapter.repository.postgressql.impl;
+package co.edu.uco.carpooling.infrastructure.adapter.repository.postgressql.impl;
 
-import co.edu.uco.carpooling.adapter.repository.postgressql.VehicleRepositoryPostgresSQL;
+import co.edu.uco.carpooling.infrastructure.adapter.repository.postgressql.VehicleRepositoryPostgresSQL;
 import co.edu.uco.carpooling.entity.VehicleEntity;
 import co.edu.uco.carpooling.service.port.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;

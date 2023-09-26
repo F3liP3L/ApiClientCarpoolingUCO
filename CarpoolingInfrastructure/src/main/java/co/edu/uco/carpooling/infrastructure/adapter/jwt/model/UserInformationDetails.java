@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.adapter.jwt.model;
+package co.edu.uco.carpooling.infrastructure.adapter.jwt.model;
 
 import co.edu.uco.carpooling.entity.CustomerEntity;
 import org.springframework.security.core.GrantedAuthority;
