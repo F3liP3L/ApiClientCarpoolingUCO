@@ -30,7 +30,7 @@ public class DriverPerVehicleDTO {
     }
 
     public void setId(UUID id) {
-        this.id = UtilUUID.getUtilUUID().getDefaultUUID(id);
+        this.id = UtilUUID.getDefaultUUID(id);
     }
 
     public DriverDTO getDriver() {
@@ -55,5 +55,8 @@ public class DriverPerVehicleDTO {
 
     public void setDriverPerVehicleStatus(StatusDTO driverPerVehicleStatus) {
         this.driverPerVehicleStatus = UtilObject.getUtilObject().getDefaultIsNull(driverPerVehicleStatus,StatusDTO.createNewStatus());
+    }
+    public static DriverPerVehicleDTO create() {
+        return new DriverPerVehicleDTO();
     }
 }

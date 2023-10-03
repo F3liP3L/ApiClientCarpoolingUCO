@@ -1,4 +1,20 @@
 spring:
+  # RabbitMQ properties
+  rabbitmq:
+    addresses: localhost:5672
+    adminAddresses: http://localhost:15672
+    nodes: rabbit@localhost
+    username: guest
+    password: guest
+    virtual_host: /
+    useSSL: false
+    sslProperties:
+      ssl:
+        keyStore:
+        keyStorePassphrase:
+        trustStore:
+        trustStorePassphrase:
+    channelCacheSize: 100
   datasource:
     url: jdbc:postgresql://containers-us-west-179.railway.app:7860/railway
     username: postgres
@@ -10,3 +26,7 @@ spring:
       ddl-auto: update
 token:
   secretSignature: ba39c7733432a8775cc115a91fcb49dbe21ecf4cc2e570fe6f456e6f26692767d3a9b9ea59965f2d03d7aba8eaa45a3c275a7273c812d010af01e1d0343b904c
+# Client properties
+route.queue-recibir.route:
+  queue-name: pruebacola
+

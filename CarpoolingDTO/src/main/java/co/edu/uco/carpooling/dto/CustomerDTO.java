@@ -33,7 +33,7 @@ public class CustomerDTO {
     }
 
     public CustomerDTO() {
-        setId(UtilUUID.DEFAULT_UUID);
+        setId(UtilUUID.getDefaultUUID(id));
         setDni(UtilText.EMPTY);
         setFirstName(UtilText.EMPTY);
         setSecondName(UtilText.EMPTY);
