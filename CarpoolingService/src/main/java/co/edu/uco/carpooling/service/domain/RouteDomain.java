@@ -1,6 +1,5 @@
 package co.edu.uco.carpooling.service.domain;
 
-import co.edu.uco.carpooling.dto.DriverPerVehicleDTO;
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
@@ -14,12 +13,12 @@ import static co.edu.uco.crosscutting.util.UtilNumeric.getUtilNumeric;
 
 public class RouteDomain {
     private UUID id;
-    private DriverPerVehicleDTO driverVehicle;
+    private DriverPerVehicleDomain driverVehicle;
     private int routeCapacity;
     private List<String> pointOfInterest;
     private LocalDateTime routeTime;
 
-    public RouteDomain(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<String> pointOfInterest, LocalDateTime routeTime) {
+    public RouteDomain(UUID id, DriverPerVehicleDomain driverVehicle, int routeCapacity, List<String> pointOfInterest, LocalDateTime routeTime) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
@@ -43,11 +42,11 @@ public class RouteDomain {
         this.id = UtilUUID.getDefaultUUID(id);
     }
 
-    public DriverPerVehicleDTO getDriverVehicle() {
+    public DriverPerVehicleDomain getDriverVehicle() {
         return driverVehicle;
     }
 
-    public void setDriverVehicle(DriverPerVehicleDTO driverVehicle) {
+    public void setDriverVehicle(DriverPerVehicleDomain driverVehicle) {
         this.driverVehicle = driverVehicle;
     }
 

@@ -5,9 +5,8 @@ dependencies {
 
     implementation 'org.springframework:spring-context'
 
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr353', version: '2.15.2'
-
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
 
     // Own Proyects
     implementation project(':CrossCutting')
