@@ -28,14 +28,13 @@ public class RouteController {
     @Autowired
     private CreateRouteUseCaseFacade facadeCreate;
     @PostMapping()
-    public ResponseEntity<Response<RouteRequestDTO>> create(@RequestBody RouteRequestDTO route){
-        Response<RouteRequestDTO> response = new Response<>();
-        ResponseEntity<Response<RouteRequestDTO>> responseEntity;
+    public ResponseEntity<Response<RouteDTO>> create(@RequestBody RouteRequestDTO route){
+        Response<RouteDTO> response = new Response<>();
+        ResponseEntity<Response<RouteDTO>> responseEntity;
         HttpStatus httpStatus = HttpStatus.CREATED;
         response.setData(new ArrayList<>());
         try {
             facadeCreate.execute(route);
-            response.addData(route);
             response.addMessage(Message.createSuccessMessage("La ruta ha sido registrada con total exito", "registro de ruta exitoso"));
             log.info(response.toString());
         } catch (CarpoolingCustomException exception) {

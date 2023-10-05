@@ -16,12 +16,21 @@ public class RabbitMQConfig {
     private String requestRouteQueue;
     @Value("${api-client.queue.route.request-routing-key}")
     private String requestRoutingKey;
+    @Value("${api-client.queue.route.response-create}")
+    private String responseCreateRouteQueue;
+    @Value("${api-client.queue.route.create-routing-key}")
+    private String createRouteRoutingKey;
     @Value("${api-client.exchange.route}")
     private String routeExchange;
 
     @Bean
     public Queue requestRoute() {
         return new Queue(requestRouteQueue);
+    }
+
+    @Bean
+    public Queue createRoute() {
+        return new Queue(responseCreateRouteQueue);
     }
     @Bean
     public DirectExchange routeExchange(){
@@ -33,5 +42,12 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(requestRoute())
                 .to(routeExchange())
                 .with(requestRoutingKey);
+    }
+
+    @Bean
+    public Binding createRoutetBinding(){
+        return BindingBuilder.bind(requestRoute())
+                .to(routeExchange())
+                .with(createRouteRoutingKey);
     }
 }

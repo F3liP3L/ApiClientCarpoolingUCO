@@ -20,6 +20,8 @@ api-client:
     route:
       request: route.request-route.qu
       request-routing-key: request-route.rk
+      response-create: route.response-route.created.qu
+      create-routing-key: response-route.created.rk
   exchange:
     route: route.ex
 
