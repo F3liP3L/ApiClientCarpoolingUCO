@@ -5,16 +5,16 @@ import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.RouteDTO;
 import co.edu.uco.carpooling.dto.RouteRequestDTO;
+import co.edu.uco.carpooling.service.domain.RouteDomain;
+import co.edu.uco.carpooling.service.facade.route.FindRouteCreateUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.routerequest.CreateRouteUseCaseFacade;
+import co.edu.uco.carpooling.service.usecase.route.FindRouteCreateUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -27,7 +27,10 @@ import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 public class RouteController {
     @Autowired
     private CreateRouteUseCaseFacade facadeCreate;
-    @PostMapping()
+    @Autowired
+    private FindRouteCreateUseCaseFacade routeCreateUseCaseFacade;
+
+    @GetMapping()
     public ResponseEntity<Response<RouteDTO>> create(@RequestBody RouteRequestDTO route){
         Response<RouteDTO> response = new Response<>();
         ResponseEntity<Response<RouteDTO>> responseEntity;
@@ -35,6 +38,7 @@ public class RouteController {
         response.setData(new ArrayList<>());
         try {
             facadeCreate.execute(route);
+            response.addData(routeCreateUseCaseFacade.execute());
             response.addMessage(Message.createSuccessMessage("La ruta ha sido registrada con total exito", "registro de ruta exitoso"));
             log.info(response.toString());
         } catch (CarpoolingCustomException exception) {

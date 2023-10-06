@@ -1,6 +1,6 @@
 package co.edu.uco.carpooling.infrastructure.adapter.broker.rabbit.component;
 
-import co.edu.uco.carpooling.crosscutting.util.UtilMapperJson;
+import co.edu.uco.carpooling.crosscutting.util.json.UtilMapperJson;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.core.MessageProperties;

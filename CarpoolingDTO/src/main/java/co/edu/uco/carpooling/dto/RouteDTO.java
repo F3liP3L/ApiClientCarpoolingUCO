@@ -1,10 +1,10 @@
 package co.edu.uco.carpooling.dto;
 
 import co.edu.uco.crosscutting.util.UtilObject;
-import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,23 +17,26 @@ public class RouteDTO {
     private UUID id;
     private DriverPerVehicleDTO driverVehicle;
     private int routeCapacity;
-    private List<String> pointOfInterest;
+    private List<PointOfInterestDTO> pointOfInterest;
+    private List<PositionDTO> positions;
     private LocalDateTime routeTime;
 
-    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<String> pointOfInterest, LocalDateTime routeTime) {
+    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<PointOfInterestDTO> pointOfInterest, List<PositionDTO> positions, LocalDateTime routeTime) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
         setPointOfInterest(pointOfInterest);
         setRouteTime(routeTime);
+        setPositions(positions);
     }
 
     public RouteDTO() {
         setId(UtilUUID.getDefaultUUID(UtilUUID.getDefaultUUID(id)));
         setDriverVehicle(DriverPerVehicleDTO.create());
         setRouteCapacity(ZERO);
-        setPointOfInterest(List.of(UtilText.EMPTY));
+        setPointOfInterest(new ArrayList<>());
         setRouteTime(TIME);
+        setPositions(new ArrayList<>());
     }
 
     public UUID getId() {
@@ -67,11 +70,19 @@ public class RouteDTO {
     public void setRouteTime(LocalDateTime routeTime) {
         this.routeTime = getUtilDate().getDefaultTimeIfNull(routeTime);
     }
-    public List<String> getPointOfInterest() {
+    public List<PointOfInterestDTO> getPointOfInterest() {
         return pointOfInterest;
     }
 
-    public void setPointOfInterest(List<String> pointOfInterest) {
-        this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest,List.of(UtilText.EMPTY));
+    public void setPointOfInterest(List<PointOfInterestDTO> pointOfInterest) {
+        this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest,new ArrayList<>());
     }
+
+    public List<PositionDTO> getPositions() {
+        return positions;
+    }
+    public void setPositions(List<PositionDTO> positions) {
+        this.positions = UtilObject.getUtilObject().getDefaultIsNull(positions, new ArrayList<>());
+    }
+
 }
