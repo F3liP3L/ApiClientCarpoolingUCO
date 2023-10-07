@@ -1,6 +1,7 @@
 package co.edu.uco.carpooling.dto;
 
 import co.edu.uco.crosscutting.util.UtilObject;
+import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.time.LocalDateTime;
@@ -17,11 +18,11 @@ public class RouteDTO {
     private UUID id;
     private DriverPerVehicleDTO driverVehicle;
     private int routeCapacity;
-    private List<PointOfInterestDTO> pointOfInterest;
+    private List<String> pointOfInterest;
     private List<PositionDTO> positions;
     private LocalDateTime routeTime;
 
-    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<PointOfInterestDTO> pointOfInterest, List<PositionDTO> positions, LocalDateTime routeTime) {
+    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDTO> positions, LocalDateTime routeTime) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
@@ -34,7 +35,7 @@ public class RouteDTO {
         setId(UtilUUID.getDefaultUUID(UtilUUID.getDefaultUUID(id)));
         setDriverVehicle(DriverPerVehicleDTO.create());
         setRouteCapacity(ZERO);
-        setPointOfInterest(new ArrayList<>());
+        setPointOfInterest(List.of(UtilText.EMPTY));
         setRouteTime(TIME);
         setPositions(new ArrayList<>());
     }
@@ -70,12 +71,12 @@ public class RouteDTO {
     public void setRouteTime(LocalDateTime routeTime) {
         this.routeTime = getUtilDate().getDefaultTimeIfNull(routeTime);
     }
-    public List<PointOfInterestDTO> getPointOfInterest() {
+    public List<String> getPointOfInterest() {
         return pointOfInterest;
     }
 
-    public void setPointOfInterest(List<PointOfInterestDTO> pointOfInterest) {
-        this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest,new ArrayList<>());
+    public void setPointOfInterest(List<String> pointOfInterest) {
+        this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest,List.of(UtilText.EMPTY));
     }
 
     public List<PositionDTO> getPositions() {

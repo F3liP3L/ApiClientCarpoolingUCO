@@ -16,8 +16,6 @@ import java.util.Optional;
 public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreatePort {
     @Autowired
     private UtilMapperJson mapperJson;
-    @Autowired
-    private FindRouteCreateUseCase routeCreateUseCase;
     private RouteDomain routeDomain;
 
     @Override
@@ -25,8 +23,7 @@ public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreateP
     public void execute(String message) {
         log.info(message);
         Optional<RouteDomain> response = mapperJson.execute(message, RouteDomain.class);
-        //response.ifPresent(domain -> routeDomain = routeCreateUseCase.execute(domain));
-        log.info(response.get().toString());
+        response.ifPresent(domain -> routeDomain = domain);
     }
 
     @Override

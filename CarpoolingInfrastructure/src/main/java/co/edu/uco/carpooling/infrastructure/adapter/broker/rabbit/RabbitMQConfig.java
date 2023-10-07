@@ -46,7 +46,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Binding createRoutetBinding(){
-        return BindingBuilder.bind(requestRoute())
+        return BindingBuilder.bind(createRoute())
                 .to(routeExchange())
                 .with(createRouteRoutingKey);
     }

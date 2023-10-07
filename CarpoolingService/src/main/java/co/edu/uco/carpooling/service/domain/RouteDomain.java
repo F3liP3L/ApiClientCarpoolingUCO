@@ -1,6 +1,7 @@
 package co.edu.uco.carpooling.service.domain;
 
 import co.edu.uco.crosscutting.util.UtilObject;
+import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.time.LocalDateTime;
@@ -18,10 +19,10 @@ public class RouteDomain {
     private DriverPerVehicleDomain driverVehicle;
     private int routeCapacity;
     private List<PositionDomain> positions;
-    private List<PointOfInterestDomain> pointOfInterest;
+    private List<String> pointOfInterest;
     private LocalDateTime routeTime;
 
-    public RouteDomain(UUID id, DriverPerVehicleDomain driverVehicle, int routeCapacity, List<PointOfInterestDomain> pointOfInterest, List<PositionDomain> positions, LocalDateTime routeTime) {
+    public RouteDomain(UUID id, DriverPerVehicleDomain driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDomain> positions, LocalDateTime routeTime) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
@@ -63,12 +64,12 @@ public class RouteDomain {
         this.routeCapacity = (int) getUtilNumeric().getDefault(routeCapacity);
     }
 
-    public List<PointOfInterestDomain> getPointOfInterest() {
+    public List<String> getPointOfInterest() {
         return pointOfInterest;
     }
 
-    public void setPointOfInterest(List<PointOfInterestDomain> pointOfInterest) {
-        this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest, new ArrayList<>());
+    public void setPointOfInterest(List<String> pointOfInterest) {
+        this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest,List.of(UtilText.EMPTY));
     }
 
     public LocalDateTime getRouteTime() {
