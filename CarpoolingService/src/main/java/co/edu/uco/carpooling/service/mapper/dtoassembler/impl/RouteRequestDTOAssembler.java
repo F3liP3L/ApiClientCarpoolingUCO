@@ -1,7 +1,7 @@
 package co.edu.uco.carpooling.service.mapper.dtoassembler.impl;
 
-import co.edu.uco.carpooling.dto.RouteRequestDTO;
-import co.edu.uco.carpooling.service.domain.RouteRequestDomain;
+import co.edu.uco.carpooling.dto.requestroute.RouteRequestDTO;
+import co.edu.uco.carpooling.service.domain.requestroute.RouteRequestDomain;
 import co.edu.uco.carpooling.service.mapper.dtoassembler.DTOAssembler;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

@@ -27,4 +27,7 @@ public class PositionDTO {
     public void setLatitude(String latitude) {
         this.latitude = UtilText.getUtilText().trim(latitude);
     }
+    public static PositionDTO build(){
+        return new PositionDTO();
+    }
 }

@@ -10,9 +10,4 @@ public class FindRouteCreateUseCaseImpl implements FindRouteCreateUseCase {
     public RouteDomain execute(RouteDomain objectMessage) {
         return objectMessage;
     }
-
-    @Override
-    public RouteDomain getRouteCreate() {
-        return null;
-    }
 }

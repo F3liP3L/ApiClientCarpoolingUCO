@@ -15,6 +15,11 @@ public class PositionDomain {
         setLatitude(latitude);
         setLongitude(longitude);
     }
+
+    public static PositionDomain build() {
+        return new PositionDomain();
+    }
+
     public String getLongitude() {
         return longitude;
     }

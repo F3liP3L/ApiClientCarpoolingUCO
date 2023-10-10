@@ -1,6 +1,6 @@
 package co.edu.uco.carpooling.service.specification.impl.routerequest;
 
-import co.edu.uco.carpooling.service.domain.RouteRequestDomain;
+import co.edu.uco.carpooling.service.domain.requestroute.RouteRequestDomain;
 import co.edu.uco.carpooling.service.specification.CompositeSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

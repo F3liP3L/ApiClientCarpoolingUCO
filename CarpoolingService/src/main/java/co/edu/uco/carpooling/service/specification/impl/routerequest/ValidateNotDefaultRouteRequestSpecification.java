@@ -1,7 +1,7 @@
 package co.edu.uco.carpooling.service.specification.impl.routerequest;
 
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
-import co.edu.uco.carpooling.service.domain.RouteRequestDomain;
+import co.edu.uco.carpooling.service.domain.requestroute.RouteRequestDomain;
 import co.edu.uco.carpooling.service.specification.CompositeSpecification;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +12,10 @@ public class ValidateNotDefaultRouteRequestSpecification extends CompositeSpecif
         return isValid(object);
     }
     private boolean isValid(RouteRequestDomain object) {
-        if (object.getOrigin().isEmpty()) {
+        if (object.getOrigin().getLatitude().isEmpty() || object.getOrigin().getLongitude().isEmpty()) {
             throw CarpoolingCustomException.buildUserException("The initial position of the route has to be entered.");
         }
-        if (object.getDestination().isEmpty()) {
+        if (object.getDestination().getLatitude().isEmpty() || object.getDestination().getLongitude().isEmpty()) {
             throw CarpoolingCustomException.buildUserException("The destination position of the route has to be entered.");
         }
         return true;

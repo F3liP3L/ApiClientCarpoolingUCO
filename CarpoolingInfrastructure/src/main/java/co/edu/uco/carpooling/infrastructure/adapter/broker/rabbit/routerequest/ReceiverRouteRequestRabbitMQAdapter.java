@@ -3,7 +3,6 @@ package co.edu.uco.carpooling.infrastructure.adapter.broker.rabbit.routerequest;
 import co.edu.uco.carpooling.crosscutting.util.json.UtilMapperJson;
 import co.edu.uco.carpooling.service.domain.RouteDomain;
 import co.edu.uco.carpooling.service.port.broker.route.ReceiverRouteCreatePort;
-import co.edu.uco.carpooling.service.usecase.route.FindRouteCreateUseCase;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;

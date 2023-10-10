@@ -1,7 +1,7 @@
 package co.edu.uco.carpooling.service.facade.routerequest.implementation;
 
-import co.edu.uco.carpooling.dto.RouteRequestDTO;
-import co.edu.uco.carpooling.service.domain.RouteRequestDomain;
+import co.edu.uco.carpooling.dto.requestroute.RouteRequestDTO;
+import co.edu.uco.carpooling.service.domain.requestroute.RouteRequestDomain;
 import co.edu.uco.carpooling.service.facade.routerequest.CreateRouteUseCaseFacade;
 import co.edu.uco.carpooling.service.mapper.dtoassembler.DTOAssembler;
 import co.edu.uco.carpooling.service.usecase.route.CreateRouteUseCase;

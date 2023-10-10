@@ -1,5 +1,8 @@
 package co.edu.uco.carpooling.service.domain;
 
+import co.edu.uco.carpooling.dto.PositionDTO;
+import co.edu.uco.carpooling.service.domain.DriverPerVehicleDomain;
+import co.edu.uco.carpooling.service.domain.PositionDomain;
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
@@ -22,7 +25,7 @@ public class RouteDomain {
     private List<String> pointOfInterest;
     private LocalDateTime routeTime;
 
-    public RouteDomain(UUID id, DriverPerVehicleDomain driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDomain> positions, LocalDateTime routeTime) {
+    public RouteDomain(UUID id, DriverPerVehicleDomain driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDomain> positions, LocalDateTime routeTime, PositionDomain origin, PositionDomain destination) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
@@ -85,6 +88,8 @@ public class RouteDomain {
     public void setPositions(List<PositionDomain> positions) {
         this.positions = UtilObject.getUtilObject().getDefaultIsNull(positions, new ArrayList<>());
     }
+
+
 
     @Override
     public String toString() {

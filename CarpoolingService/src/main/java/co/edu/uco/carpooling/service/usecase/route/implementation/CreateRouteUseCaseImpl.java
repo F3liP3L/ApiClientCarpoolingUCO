@@ -1,7 +1,7 @@
 package co.edu.uco.carpooling.service.usecase.route.implementation;
 
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
-import co.edu.uco.carpooling.service.domain.RouteRequestDomain;
+import co.edu.uco.carpooling.service.domain.requestroute.RouteRequestDomain;
 import co.edu.uco.carpooling.service.port.broker.MessageSenderPort;
 import co.edu.uco.carpooling.service.specification.impl.routerequest.ValidRouteRequestSpecification;
 import co.edu.uco.carpooling.service.usecase.route.CreateRouteUseCase;

@@ -1,7 +1,7 @@
 package co.edu.uco.carpooling.infrastructure.adapter.broker.rabbit.routerequest;
 
 import co.edu.uco.carpooling.infrastructure.adapter.broker.rabbit.component.RabbitMQConfigureMessage;
-import co.edu.uco.carpooling.service.domain.RouteRequestDomain;
+import co.edu.uco.carpooling.service.domain.requestroute.RouteRequestDomain;
 import co.edu.uco.carpooling.service.port.broker.route.SenderRouteRequestPort;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
