@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.infrastructure.broker;
+package co.edu.uco.carpooling.infrastructure.adapter.broker;
 
 import co.edu.uco.carpooling.service.domain.RouteDomain;
 import co.edu.uco.carpooling.service.port.broker.PortBroker;

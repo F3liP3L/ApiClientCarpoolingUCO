@@ -3,7 +3,6 @@ package co.edu.uco.carpooling.api.controller;
 import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
-import co.edu.uco.carpooling.dto.CustomerDTO;
 import co.edu.uco.carpooling.dto.DriverDTO;
 import co.edu.uco.carpooling.service.facade.driver.DeleteDriverUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.driver.RegisterDriverUseCaseFacade;
@@ -40,7 +39,7 @@ public class DriverController {
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            response.addData(listDriverUseCase.execute(Optional.of(DriverDTO.createNewDriver())));
+            response.addData(listDriverUseCase.execute(Optional.of(DriverDTO.create())));
         } catch (GeneralException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected error"));

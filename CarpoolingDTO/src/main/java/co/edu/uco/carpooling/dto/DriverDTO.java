@@ -36,7 +36,7 @@ public class DriverDTO {
         setUser(CustomerDTO.create());
     }
 
-    public static DriverDTO createNewDriver() {
+    public static DriverDTO create() {
         return new DriverDTO();
     }
 

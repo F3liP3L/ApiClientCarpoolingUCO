@@ -21,7 +21,7 @@ public class DriverPerVehicleDTO {
     public DriverPerVehicleDTO() {
         setId(UtilUUID.getNewUUID());
         setVehicle(VehicleDTO.create());
-        setDriver(DriverDTO.createNewDriver());
+        setDriver(DriverDTO.create());
         setDriverPerVehicleStatus(StatusDTO.createNewStatus());
     }
 
@@ -38,7 +38,7 @@ public class DriverPerVehicleDTO {
     }
 
     public void setDriver(DriverDTO driver) {
-        this.driver = UtilObject.getUtilObject().getDefaultIsNull(driver,DriverDTO.createNewDriver());
+        this.driver = UtilObject.getUtilObject().getDefaultIsNull(driver,DriverDTO.create());
     }
 
     public VehicleDTO getVehicle() {

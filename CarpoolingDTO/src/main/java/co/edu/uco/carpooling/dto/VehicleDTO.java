@@ -27,7 +27,7 @@ public class VehicleDTO {
         setId(UtilUUID.getDefaultUUID(id));
         setPlate(EMPTY);
         setCapacity(ZERO);
-        setOwner(DriverDTO.createNewDriver());
+        setOwner(DriverDTO.create());
     }
 
     public VehicleDTO(int capacity) {
@@ -70,7 +70,7 @@ public class VehicleDTO {
     }
 
     public void setOwner(DriverDTO owner) {
-        this.owner = getUtilObject().getDefaultIsNull(owner,DriverDTO.createNewDriver());
+        this.owner = getUtilObject().getDefaultIsNull(owner,DriverDTO.create());
     }
 
     public VehicleDTO createPatch() {
