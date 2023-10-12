@@ -5,6 +5,7 @@ import co.edu.uco.crosscutting.util.UtilText;
 import co.edu.uco.crosscutting.util.UtilUUID;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,14 +19,16 @@ public class RouteDTO {
     private DriverPerVehicleDTO driverVehicle;
     private int routeCapacity;
     private List<String> pointOfInterest;
+    private List<PositionDTO> positions;
     private LocalDateTime routeTime;
 
-    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<String> pointOfInterest, LocalDateTime routeTime) {
+    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDTO> positions, LocalDateTime routeTime) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
         setPointOfInterest(pointOfInterest);
         setRouteTime(routeTime);
+        setPositions(positions);
     }
 
     public RouteDTO() {
@@ -34,6 +37,7 @@ public class RouteDTO {
         setRouteCapacity(ZERO);
         setPointOfInterest(List.of(UtilText.EMPTY));
         setRouteTime(TIME);
+        setPositions(new ArrayList<>());
     }
 
     public UUID getId() {
@@ -74,4 +78,12 @@ public class RouteDTO {
     public void setPointOfInterest(List<String> pointOfInterest) {
         this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest,List.of(UtilText.EMPTY));
     }
+
+    public List<PositionDTO> getPositions() {
+        return positions;
+    }
+    public void setPositions(List<PositionDTO> positions) {
+        this.positions = UtilObject.getUtilObject().getDefaultIsNull(positions, new ArrayList<>());
+    }
+
 }

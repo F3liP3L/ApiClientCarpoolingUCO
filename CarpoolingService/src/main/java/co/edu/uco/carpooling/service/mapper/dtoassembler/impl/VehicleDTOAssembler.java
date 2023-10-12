@@ -12,7 +12,6 @@ public class VehicleDTOAssembler implements DTOAssembler<VehicleDTO, VehicleDoma
     private final ModelMapper modelMapper;
 
     public VehicleDTOAssembler() {
-        ModelMapper mapper = new ModelMapper();
         this.modelMapper = new ModelMapper();
     }
 

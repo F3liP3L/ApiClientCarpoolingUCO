@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.service.specification.impl;
+package co.edu.uco.carpooling.service.specification.impl.vehicle;
 
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.entity.VehicleEntity;

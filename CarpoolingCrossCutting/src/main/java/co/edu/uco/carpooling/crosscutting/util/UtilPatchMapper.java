@@ -10,11 +10,11 @@ import javax.json.JsonPatch;
 import javax.json.JsonStructure;
 import javax.json.JsonValue;
 
-public final class UtilObjectMapper {
-    private static final UtilObjectMapper INSTANCE = new UtilObjectMapper();
-    public UtilObjectMapper() {}
+public final class UtilPatchMapper {
+    private static final UtilPatchMapper INSTANCE = new UtilPatchMapper();
+    public UtilPatchMapper() {}
 
-    public static UtilObjectMapper getUtilObjectMapper() { return INSTANCE; }
+    public static UtilPatchMapper getUtilObjectMapper() { return INSTANCE; }
     private ObjectMapper mapper = new ObjectMapper();
 
     public ObjectMapper objectMapperJsonPath() {
