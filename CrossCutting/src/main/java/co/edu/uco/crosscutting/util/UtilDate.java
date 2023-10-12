@@ -2,12 +2,20 @@ package co.edu.uco.crosscutting.util;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.Date;
 
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 
 public class UtilDate {
 
+    private static final DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+            .appendPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+            .optionalStart()
+            .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 9, true)
+            .optionalEnd()
+            .toFormatter();
     public static final LocalDateTime TIME = LocalDateTime.now();
     private static final UtilDate INSTANCE = new UtilDate();
 
@@ -77,6 +85,10 @@ public class UtilDate {
     public boolean isOfLegalAge(Date birthDate) {
         Period period = Period.between(getDateALocalDate(birthDate), currentDate());
         return !UtilNumeric.getUtilNumeric().isLessThan(period.getYears(), 18);
+    }
+
+    public LocalDateTime parseDate(String date) {
+        return LocalDateTime.parse(date, formatter);
     }
 
 }

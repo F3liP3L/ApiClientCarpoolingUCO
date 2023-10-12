@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.crosscutting.util;
+package co.edu.uco.carpooling.crosscutting.util.json;
 
 import java.util.Optional;
 

@@ -45,4 +45,8 @@ public class DriverPerVehicleDomain {
     public void setDriverPerVehicleStatus(StatusDomain driverPerVehicleStatus) {
         this.driverPerVehicleStatus = UtilObject.getUtilObject().getDefaultIsNull(driverPerVehicleStatus, StatusDomain.createNewStatus());
     }
+
+    public static DriverPerVehicleDomain build() {
+        return new DriverPerVehicleDomain();
+    }
 }
