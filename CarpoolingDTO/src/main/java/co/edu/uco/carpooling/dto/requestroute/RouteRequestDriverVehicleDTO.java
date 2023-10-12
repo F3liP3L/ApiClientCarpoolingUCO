@@ -1,6 +1,5 @@
 package co.edu.uco.carpooling.dto.requestroute;
 
-import co.edu.uco.carpooling.dto.DriverPerVehicleDTO;
 import co.edu.uco.crosscutting.util.UtilObject;
 import co.edu.uco.crosscutting.util.UtilUUID;
 

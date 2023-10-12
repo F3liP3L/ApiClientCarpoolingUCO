@@ -40,7 +40,7 @@ public class RouteController {
         try {
             facadeCreate.execute(route);
             response.addData(routeCreateUseCaseFacade.execute());
-            response.addMessage(Message.createSuccessMessage("La ruta ha sido registrada con total exito", "registro de ruta exitoso"));
+            response.addMessage(Message.createSuccessMessage("The route has been successfully registered.", "successful route registration"));
             log.info(response.toString());
         } catch (CarpoolingCustomException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
@@ -52,7 +52,7 @@ public class RouteController {
             log.warn(response.toString());
         } catch (GeneralException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
-            response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected errors "));
+            response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected errors"));
             log.warn(response.toString());
         }
         responseEntity = new ResponseEntity<>(response, httpStatus);

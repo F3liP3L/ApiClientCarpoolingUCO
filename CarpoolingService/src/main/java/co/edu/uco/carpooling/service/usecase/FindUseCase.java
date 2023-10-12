@@ -1,5 +1,5 @@
 package co.edu.uco.carpooling.service.usecase;
 
-public interface FindUseCase<T> {
-    T execute(T messageObject);
+public interface FindUseCase<T, D> {
+    T execute(D messageObject);
 }

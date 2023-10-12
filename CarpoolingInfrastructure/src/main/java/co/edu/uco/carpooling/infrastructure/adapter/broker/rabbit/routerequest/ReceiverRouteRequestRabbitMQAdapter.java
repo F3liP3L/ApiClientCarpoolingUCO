@@ -1,6 +1,7 @@
 package co.edu.uco.carpooling.infrastructure.adapter.broker.rabbit.routerequest;
 
 import co.edu.uco.carpooling.crosscutting.util.json.UtilMapperJson;
+import co.edu.uco.carpooling.service.component.LatestRouteService;
 import co.edu.uco.carpooling.service.domain.RouteDomain;
 import co.edu.uco.carpooling.service.port.broker.route.ReceiverRouteCreatePort;
 import lombok.extern.slf4j.Slf4j;
@@ -15,19 +16,19 @@ import java.util.Optional;
 public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreatePort {
     @Autowired
     private UtilMapperJson mapperJson;
-    private RouteDomain routeDomain;
+    @Autowired
+    private LatestRouteService latestRouteService;
 
     @Override
     @RabbitListener(queues = "${api-client.queue.route.response-create}")
     public void execute(String message) {
-        log.info(message);
         Optional<RouteDomain> response = mapperJson.execute(message, RouteDomain.class);
-        response.ifPresent(domain -> routeDomain = domain);
+        response.ifPresent(domain -> latestRouteService.setLatestRoute(domain));
     }
 
     @Override
     public RouteDomain getMessage() {
-        return routeDomain;
+        return latestRouteService.getLatestRoute();
     }
 
 }
