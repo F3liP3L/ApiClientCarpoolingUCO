@@ -1,20 +1,31 @@
 spring:
   datasource:
-    url: jdbc:postgresql://containers-us-west-179.railway.app:7860/railway
-    username: postgres
-    password: ceGIJu3TvXPuL2pTS30j
+    url: ${url-database}
+    username: ${user-database}
+    password: ${password-database}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: admin
-    password: carpooling2023_
+    host: ${rabbit-host}
+    port: 5671
+    username: ${rabbit-user}
+    password: ${rabbit-password}
+    virtual-host: ${rabbit-user}
+    ssl:
+      enabled: true
+  cloud:
+    vault:
+      uri: http://18.116.86.155:8200
+      token: hvs.Ngw7aT7pxdwAkEj0GWkNRNB3
+      connection-timeout: 5000
+      read-timeout: 15000
+  config:
+    import: vault://cubbyhole/manager-user-microservice
 token:
-  secretSignature: ba39c7733432a8775cc115a91fcb49dbe21ecf4cc2e570fe6f456e6f26692767d3a9b9ea59965f2d03d7aba8eaa45a3c275a7273c812d010af01e1d0343b904c
+  secretSignature: ${jwt-secret-signature}
 api-client:
   queue:
     route:

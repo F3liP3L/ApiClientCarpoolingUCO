@@ -17,6 +17,9 @@ dependencies {
 	implementation group: 'org.apache.johnzon', name: 'johnzon-core', version: '1.2.19'
 	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr353', version: '2.15.2'
 
+	implementation group: 'org.springframework.vault', name: 'spring-vault-dependencies', version: '3.0.0', ext: 'pom'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-vault-config', version: '4.0.1'
+
 	// Own modules
 	implementation project(':CarpoolingCrossCutting')
 	implementation project(':CrossCutting')
@@ -25,6 +28,16 @@ dependencies {
 	implementation project(':CarpoolingService')
 	implementation project(':CarpoolingInfrastructure')
 
+}
+
+ext {
+	set('springCloudVersion', "2022.0.4")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 tasks.named('test') {

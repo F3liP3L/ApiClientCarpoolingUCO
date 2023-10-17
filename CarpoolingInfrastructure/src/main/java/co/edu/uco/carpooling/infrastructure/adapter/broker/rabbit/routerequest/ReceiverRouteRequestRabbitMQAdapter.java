@@ -22,7 +22,9 @@ public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreateP
     @Override
     @RabbitListener(queues = "${api-client.queue.route.response-create}")
     public void execute(String message) {
+        log.info(message);
         Optional<RouteDomain> response = mapperJson.execute(message, RouteDomain.class);
+        log.info(response.get().toString());
         response.ifPresent(domain -> latestRouteService.setLatestRoute(domain));
     }
 

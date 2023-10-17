@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RouteDTOAssembler implements DTOAssembler<RouteDTO, RouteDomain> {
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
     public RouteDTOAssembler() {
         this.modelMapper = new ModelMapper();
     }
