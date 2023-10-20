@@ -1,9 +1,12 @@
 package co.edu.uco.carpooling.infrastructure.adapter.broker.rabbit.routerequest;
 
 import co.edu.uco.carpooling.crosscutting.util.json.UtilMapperJson;
-import co.edu.uco.carpooling.service.component.LatestRouteService;
+import co.edu.uco.carpooling.dto.RouteDTO;
+import co.edu.uco.carpooling.entity.RouteEntity;
 import co.edu.uco.carpooling.service.domain.RouteDomain;
+import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import co.edu.uco.carpooling.service.port.broker.route.ReceiverRouteCreatePort;
+import co.edu.uco.carpooling.service.port.repository.RouteRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,9 @@ public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreateP
     @Autowired
     private UtilMapperJson mapperJson;
     @Autowired
-    private LatestRouteService latestRouteService;
+    private EntityAssembler<RouteEntity, RouteDomain, RouteDTO> entityAssembler;
+    @Autowired
+    private RouteRepository routeRepository;
 
     @Override
     @RabbitListener(queues = "${api-client.queue.route.response-create}")
@@ -25,12 +30,14 @@ public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreateP
         log.info(message);
         Optional<RouteDomain> response = mapperJson.execute(message, RouteDomain.class);
         log.info(response.get().toString());
-        response.ifPresent(domain -> latestRouteService.setLatestRoute(domain));
+        response.ifPresent(this::accept);
     }
 
-    @Override
-    public RouteDomain getMessage() {
-        return latestRouteService.getLatestRoute();
+    private void accept(RouteDomain routeDomain) {
+        RouteEntity route = entityAssembler.assembleEntity(routeDomain);
+        Optional<String> response = mapperJson.execute(routeDomain.getPositions());
+        response.ifPresent(route::setPositions);
+        log.info(route.toString());
+        routeRepository.save(route);
     }
-
 }
