@@ -6,15 +6,13 @@ import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.RouteDTO;
 import co.edu.uco.carpooling.dto.requestroute.RouteRequestDTO;
 import co.edu.uco.carpooling.entity.RouteEntity;
+import co.edu.uco.carpooling.service.facade.route.RouteSaveUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.routerequest.CreateRouteUseCaseFacade;
 import co.edu.uco.carpooling.service.port.repository.RouteRepository;
 import co.edu.uco.carpooling.service.usecase.route.FindRouteCreateUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import lombok.extern.slf4j.Slf4j;
-import org.jasypt.encryption.StringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +27,12 @@ import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 @RequestMapping("api/v1/carpooling/route")
 @Slf4j
 public class RouteController {
-
-    @Value("${token.secretEncrypt}")
-    private String token;
     @Autowired
     private CreateRouteUseCaseFacade facadeCreate;
     @Autowired
     private FindRouteCreateUseCase routeCreateUseCaseFacade;
+    @Autowired
+    private RouteSaveUseCaseFacade routeSaveUseCaseFacade;
     @Autowired
     private RouteRepository repository;
 
@@ -67,6 +64,34 @@ public class RouteController {
         return responseEntity;
     }
 
+    @PostMapping("/save")
+    public ResponseEntity<Response<RouteDTO>> save(@RequestBody RouteDTO route){
+        Response<RouteDTO> response = new Response<>();
+        ResponseEntity<Response<RouteDTO>> responseEntity;
+        HttpStatus httpStatus = HttpStatus.CREATED;
+        response.setData(new ArrayList<>());
+        try {
+            routeSaveUseCaseFacade.execute(route);
+            response.addMessage(Message.createSuccessMessage("The route has been successfully registered.", "successful route registration"));
+            log.info(response.toString());
+        } catch (CarpoolingCustomException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Error Saving Route"));
+            if (!getUtilObject().isNull(exception.getTechnicalMessage())
+                    && !Objects.equals(exception.getTechnicalMessage(), exception.getUserMessage())) {
+                response.addMessage(Message.createErrorMessage(exception.getTechnicalMessage(), "Technical Message"));
+            }
+            log.warn(response.toString());
+        } catch (GeneralException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected Errors"));
+            log.warn(response.toString());
+        }
+        responseEntity = new ResponseEntity<>(response, httpStatus);
+        return responseEntity;
+    }
+
+
     @GetMapping()
     public ResponseEntity<List<RouteEntity>> findCreate() {
         List<RouteEntity> routeEntities = new ArrayList<>();
@@ -80,7 +105,6 @@ public class RouteController {
 
     @GetMapping("/test/{chain}")
     public String find(@PathVariable String chain){
-        log.info(token);
-        return "Hola";
+        return chain;
     }
 }

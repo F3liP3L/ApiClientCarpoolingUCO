@@ -6,7 +6,7 @@ spring:
   cloud:
     vault:
       uri: http://18.116.86.155:8200
-      token: ENC(RCjyM385Lsw2csV2isiwYjBJGjY1JtIfF4hqrIcO/4DYf/j9RlKS1g==)
+      token: 7u7
   config:
     import: vault://cubbyhole/manager-user-microservice
   datasource:
@@ -28,7 +28,6 @@ spring:
       enabled: true
 token:
   secretSignature: ${jwt-secret-signature}
-  secretEncrypt: hvs.JKAyN6C07hVD7uPSOWlyaBHB
 api-client:
   queue:
     route:
