@@ -1,4 +1,14 @@
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 spring:
+  cloud:
+    vault:
+      uri: http://18.116.86.155:8200
+      token: 7u7
+  config:
+    import: vault://cubbyhole/manager-user-microservice
   datasource:
     url: ${url-database}
     username: ${user-database}
@@ -16,14 +26,6 @@ spring:
     virtual-host: ${rabbit-user}
     ssl:
       enabled: true
-  cloud:
-    vault:
-      uri: http://18.116.86.155:8200
-      token: hvs.Ngw7aT7pxdwAkEj0GWkNRNB3
-      connection-timeout: 5000
-      read-timeout: 15000
-  config:
-    import: vault://cubbyhole/manager-user-microservice
 token:
   secretSignature: ${jwt-secret-signature}
 api-client:
@@ -31,10 +33,10 @@ api-client:
     route:
       request: route.request-route.qu
       request-routing-key: request-route.rk
+      save-route: route.save-route.qu
       response-create: route.response-route.created.qu
       create-routing-key: response-route.created.rk
+      save-routing-key: save-route.save.rk
   exchange:
     route: route.ex
-
-
 

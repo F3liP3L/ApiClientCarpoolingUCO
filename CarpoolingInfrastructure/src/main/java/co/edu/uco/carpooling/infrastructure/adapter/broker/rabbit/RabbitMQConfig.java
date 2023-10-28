@@ -20,12 +20,21 @@ public class RabbitMQConfig {
     private String responseCreateRouteQueue;
     @Value("${api-client.queue.route.create-routing-key}")
     private String createRouteRoutingKey;
+    @Value("${api-client.queue.route.save-route}")
+    private String saveRouteQueue;
+    @Value("${api-client.queue.route.save-routing-key}")
+    private String saveRouteRoutingKey;
     @Value("${api-client.exchange.route}")
     private String routeExchange;
 
     @Bean
     public Queue requestRoute() {
         return new Queue(requestRouteQueue);
+    }
+
+    @Bean
+    public Queue saveRoute() {
+        return new Queue(saveRouteQueue);
     }
 
     @Bean
@@ -42,6 +51,13 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(requestRoute())
                 .to(routeExchange())
                 .with(requestRoutingKey);
+    }
+
+    @Bean
+    public Binding saveRouteBinding(){
+        return BindingBuilder.bind(saveRoute())
+                .to(routeExchange())
+                .with(saveRouteRoutingKey);
     }
 
     @Bean

@@ -1,4 +1,4 @@
-package co.edu.uco.carpooling.service.facade.route.impl;
+package co.edu.uco.carpooling.service.facade.route.implementation;
 
 import co.edu.uco.carpooling.dto.RouteDTO;
 import co.edu.uco.carpooling.service.component.LatestRouteService;
