@@ -4,22 +4,22 @@ import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.RouteDTO;
+import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.dto.requestroute.RouteRequestDTO;
-import co.edu.uco.carpooling.entity.RouteEntity;
 import co.edu.uco.carpooling.service.facade.route.RouteSaveUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.routerequest.CreateRouteUseCaseFacade;
 import co.edu.uco.carpooling.service.port.repository.RouteRepository;
 import co.edu.uco.carpooling.service.usecase.route.FindRouteCreateUseCase;
+import co.edu.uco.carpooling.service.usecase.route.RouteActiveUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 
@@ -30,9 +30,11 @@ public class RouteController {
     @Autowired
     private CreateRouteUseCaseFacade facadeCreate;
     @Autowired
-    private FindRouteCreateUseCase routeCreateUseCaseFacade;
+    private FindRouteCreateUseCase routeCreateUseCase;
     @Autowired
     private RouteSaveUseCaseFacade routeSaveUseCaseFacade;
+    @Autowired
+    private RouteActiveUseCase routeActiveUseCase;
     @Autowired
     private RouteRepository repository;
 
@@ -44,7 +46,6 @@ public class RouteController {
         response.setData(new ArrayList<>());
         try {
             facadeCreate.execute(route);
-            response.addData(routeCreateUseCaseFacade.execute(route.getId()));
             response.addMessage(Message.createSuccessMessage("The route has been successfully registered.", "successful route registration"));
             log.info(response.toString());
         } catch (CarpoolingCustomException exception) {
@@ -91,20 +92,28 @@ public class RouteController {
         return responseEntity;
     }
 
-
-    @GetMapping()
-    public ResponseEntity<List<RouteEntity>> findCreate() {
-        List<RouteEntity> routeEntities = new ArrayList<>();
+    @GetMapping("/{id}")
+    public ResponseEntity<Response<RouteDTO>> findRouteCreate(@PathVariable UUID id) {
+        Response<RouteDTO> response = new Response<>();
+        HttpStatus httpStatus = HttpStatus.OK;
+        response.setData(new ArrayList<>());
         try {
-            routeEntities = repository.findRouteActive();
-        } catch (Exception exception) {
-            log.error(exception.getMessage());
+            response.addData(routeCreateUseCase.execute(id));
+        } catch (GeneralException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected error"));
         }
-        return new ResponseEntity<>(routeEntities, HttpStatus.OK);
+        return new ResponseEntity<>(response, httpStatus);
     }
 
-    @GetMapping("/test/{chain}")
-    public String find(@PathVariable String chain){
-        return chain;
+    @GetMapping("/active")
+    public ResponseEntity<List<RouteDTO>> findActiveRoute() {
+        List<RouteDTO> routes = new ArrayList<>();
+        try {
+            routes = routeActiveUseCase.execute(Optional.of(new RouteDTO()));
+        } catch (GeneralException exception) {
+            log.error(exception.getUserMessage());
+        }
+        return new ResponseEntity<>(routes, HttpStatus.OK);
     }
 }

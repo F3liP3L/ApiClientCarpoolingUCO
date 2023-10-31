@@ -1,12 +1,8 @@
-jasypt:
-  encryptor:
-    algorithm: PBEWithMD5AndDES
-    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 spring:
   cloud:
     vault:
       uri: http://18.116.86.155:8200
-      token: 7u7
+      token: UWU
   config:
     import: vault://cubbyhole/manager-user-microservice
   datasource:
