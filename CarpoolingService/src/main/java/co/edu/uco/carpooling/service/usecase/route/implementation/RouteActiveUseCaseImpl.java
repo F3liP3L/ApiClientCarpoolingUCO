@@ -10,6 +10,7 @@ import co.edu.uco.carpooling.service.domain.requestroute.RouteRequestDomain;
 import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import co.edu.uco.carpooling.service.port.repository.RouteRepository;
 import co.edu.uco.carpooling.service.usecase.route.RouteActiveUseCase;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class RouteActiveUseCaseImpl implements RouteActiveUseCase {
     @Autowired
     private EntityAssembler<RouteEntity, RouteAvailableDomain, RouteAvailableDTO> entityAssembler;
