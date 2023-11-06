@@ -23,7 +23,7 @@ public class DriverRepositoryAdapter implements DriverRepository {
 
     @Override
     public Optional<DriverEntity> getDriverByCustomer(UUID idCustomer) {
-        return driverRepositoryPostgresSQL.findByCustomerEntityId(idCustomer);
+        return driverRepositoryPostgresSQL.findByCustomerId(idCustomer);
     }
 
     @Override

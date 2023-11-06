@@ -21,5 +21,5 @@ public class DriverPerVehicleEntity {
 
     @ManyToOne
     @JoinColumn(name = "state")
-    private StatusEntity Status;
+    private StatusEntity status;
 }

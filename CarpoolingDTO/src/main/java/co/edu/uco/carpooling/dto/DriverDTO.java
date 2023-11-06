@@ -10,7 +10,7 @@ public class DriverDTO {
     private UUID id;
     private String licenseNumber;
     private AuthorizedCategoryDTO authorizedCategory;
-    private CustomerDTO user;
+    private CustomerDTO customer;
 
     public UUID getId() {
         return id;
@@ -20,12 +20,12 @@ public class DriverDTO {
         this.id = UtilUUID.getDefaultUUID(id);
     }
 
-    public DriverDTO(UUID id, String licenseNumber, AuthorizedCategoryDTO authorizedCategory, CustomerDTO user) {
+    public DriverDTO(UUID id, String licenseNumber, AuthorizedCategoryDTO authorizedCategory, CustomerDTO customer) {
         super();
         setId(id);
         setLicenseNumber(licenseNumber);
         setAuthorizedCategory(authorizedCategory);
-        setUser(user);
+        setCustomer(customer);
     }
 
     public DriverDTO() {
@@ -33,7 +33,7 @@ public class DriverDTO {
         setId(UtilUUID.getDefaultUUID(id));
         setLicenseNumber(UtilText.EMPTY);
         setAuthorizedCategory(AuthorizedCategoryDTO.createNewAuthorizedCategory());
-        setUser(CustomerDTO.create());
+        setCustomer(CustomerDTO.create());
     }
 
     public static DriverDTO create() {
@@ -57,11 +57,11 @@ public class DriverDTO {
                 AuthorizedCategoryDTO.createNewAuthorizedCategory());
     }
 
-    public CustomerDTO getUser() {
-        return user;
+    public CustomerDTO getCustomer() {
+        return customer;
     }
 
-    public void setUser(CustomerDTO user) {
-        this.user = UtilObject.getUtilObject().getDefaultIsNull(user, CustomerDTO.create());
+    public void setCustomer(CustomerDTO customer) {
+        this.customer = UtilObject.getUtilObject().getDefaultIsNull(customer, CustomerDTO.create());
     }
 }

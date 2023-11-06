@@ -35,6 +35,7 @@ public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreateP
 
     private void accept(RouteDomain routeDomain) {
         RouteEntity route = entityAssembler.assembleEntity(routeDomain);
+        route.setStatus("Creada");
         Optional<String> response = mapperJson.execute(routeDomain.getPositions());
         response.ifPresent(route::setPositions);
         log.info(route.toString());

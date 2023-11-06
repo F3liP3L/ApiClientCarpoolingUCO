@@ -13,14 +13,14 @@ public class DriverDomain {
     private UUID id;
     private String licenseNumber;
     private AuthorizedCategoryDomain authorizedCategory;
-    private CustomerDomain user;
+    private CustomerDomain customer;
 
     public DriverDomain(UUID id, String licenseNumber, AuthorizedCategoryDomain authorizedCategory,CustomerDomain customerDomain) {
         super();
         setId(id);
         setLicenseNumber(licenseNumber);
         setAuthorizedCategory(authorizedCategory);
-        setUser(customerDomain);
+        setCustomer(customerDomain);
     }
 
     public DriverDomain() {
@@ -28,7 +28,7 @@ public class DriverDomain {
         setId(UtilUUID.DEFAULT_UUID);
         setLicenseNumber(EMPTY);
         setAuthorizedCategory(AuthorizedCategoryDomain.createNewAuthorizedCategory());
-        setUser(CustomerDomain.build());
+        setCustomer(CustomerDomain.build());
     }
 
     public static DriverDomain createNewDriver() {
@@ -60,11 +60,11 @@ public class DriverDomain {
         this.id = UtilUUID.getDefaultUUID(id);
     }
 
-    public CustomerDomain getUser() {
-        return user;
+    public CustomerDomain getCustomer() {
+        return customer;
     }
 
-    public void setUser(CustomerDomain user) {
-        this.user = UtilObject.getUtilObject().getDefaultIsNull(user, CustomerDomain.build());
+    public void setCustomer(CustomerDomain customer) {
+        this.customer = UtilObject.getUtilObject().getDefaultIsNull(customer, CustomerDomain.build());
     }
 }

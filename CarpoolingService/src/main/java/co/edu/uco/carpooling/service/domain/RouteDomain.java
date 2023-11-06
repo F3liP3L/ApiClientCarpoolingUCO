@@ -23,13 +23,14 @@ public class RouteDomain {
     private LocalDateTime routeTime;
     private String status;
 
-    public RouteDomain(UUID id, DriverPerVehicleDomain driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDomain> positions, LocalDateTime routeTime, PositionDomain origin, PositionDomain destination) {
+    public RouteDomain(UUID id, DriverPerVehicleDomain driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDomain> positions, LocalDateTime routeTime, String status) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
         setPointOfInterest(pointOfInterest);
         setRouteTime(routeTime);
         setPositions(positions);
+        setStatus(status);
     }
 
     public RouteDomain() {
@@ -39,6 +40,7 @@ public class RouteDomain {
         setPointOfInterest(new ArrayList<>());
         setRouteTime(TIME);
         setPositions(new ArrayList<>());
+        setStatus(UtilText.EMPTY);
     }
 
     public UUID getId() {
@@ -86,7 +88,12 @@ public class RouteDomain {
     public void setPositions(List<PositionDomain> positions) {
         this.positions = UtilObject.getUtilObject().getDefaultIsNull(positions, new ArrayList<>());
     }
-
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = UtilText.getUtilText().trim(status);
+    }
     @Override
     public String toString() {
         return "RouteDomain{" +

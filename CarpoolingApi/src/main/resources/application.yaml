@@ -2,7 +2,7 @@ spring:
   cloud:
     vault:
       uri: http://18.116.86.155:8200
-      token: UWU
+      token: hvs.JKAyN6C07hVD7uPSOWlyaBHB
   config:
     import: vault://cubbyhole/manager-user-microservice
   datasource:

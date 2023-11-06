@@ -4,7 +4,7 @@ import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.RouteDTO;
-import co.edu.uco.carpooling.dto.VehicleDTO;
+import co.edu.uco.carpooling.dto.requestroute.RouteAvailableDTO;
 import co.edu.uco.carpooling.dto.requestroute.RouteRequestDTO;
 import co.edu.uco.carpooling.service.facade.route.RouteSaveUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.routerequest.CreateRouteUseCaseFacade;
@@ -12,7 +12,6 @@ import co.edu.uco.carpooling.service.port.repository.RouteRepository;
 import co.edu.uco.carpooling.service.usecase.route.FindRouteCreateUseCase;
 import co.edu.uco.carpooling.service.usecase.route.RouteActiveUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,13 +38,14 @@ public class RouteController {
     private RouteRepository repository;
 
     @PostMapping()
-    public ResponseEntity<Response<RouteDTO>> create(@RequestBody RouteRequestDTO route){
-        Response<RouteDTO> response = new Response<>();
-        ResponseEntity<Response<RouteDTO>> responseEntity;
+    public ResponseEntity<Response<RouteRequestDTO>> create(@RequestBody RouteRequestDTO route){
+        Response<RouteRequestDTO> response = new Response<>();
+        ResponseEntity<Response<RouteRequestDTO>> responseEntity;
         HttpStatus httpStatus = HttpStatus.CREATED;
         response.setData(new ArrayList<>());
         try {
             facadeCreate.execute(route);
+            response.addData(route);
             response.addMessage(Message.createSuccessMessage("The route has been successfully registered.", "successful route registration"));
             log.info(response.toString());
         } catch (CarpoolingCustomException exception) {
@@ -107,10 +107,10 @@ public class RouteController {
     }
 
     @GetMapping("/active")
-    public ResponseEntity<List<RouteDTO>> findActiveRoute() {
-        List<RouteDTO> routes = new ArrayList<>();
+    public ResponseEntity<List<RouteAvailableDTO>> findActiveRoute() {
+        List<RouteAvailableDTO> routes = new ArrayList<>();
         try {
-            routes = routeActiveUseCase.execute(Optional.of(new RouteDTO()));
+            routes = routeActiveUseCase.execute(Optional.of(RouteAvailableDTO.build()));
         } catch (GeneralException exception) {
             log.error(exception.getUserMessage());
         }
