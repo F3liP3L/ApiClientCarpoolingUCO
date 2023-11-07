@@ -33,7 +33,7 @@ public class DriverController {
     @Autowired
     private DeleteDriverUseCaseFacade deleteDriverUseCaseFacade;
 
-    @GetMapping("/get")
+    @GetMapping()
     public ResponseEntity<Response<List<DriverDTO>>> getAllCustomer() {
         Response<List<DriverDTO>> response = new Response<>();
         HttpStatus httpStatus = HttpStatus.OK;
@@ -47,7 +47,7 @@ public class DriverController {
         return new ResponseEntity<>(response, httpStatus);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     ResponseEntity<Response<DriverDTO>> registerDriver(@RequestBody DriverDTO driver) {
         Response<DriverDTO> response = new Response<>();
         ResponseEntity<Response<DriverDTO>> responseEntity;
@@ -76,7 +76,7 @@ public class DriverController {
         return responseEntity;
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping()
     public ResponseEntity<Response<DriverDTO>> deleteDriver(@RequestBody DriverDTO driver) {
         Response<DriverDTO> response = new Response<>();
         ResponseEntity<Response<DriverDTO>> responseEntity;

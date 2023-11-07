@@ -38,7 +38,7 @@ public class CustomerController {
     @Autowired
     private PatchUserUseCaseFacade patchUserUseCaseFacade;
 
-    @GetMapping("/get")
+    @GetMapping()
     public ResponseEntity<Response<List<CustomerDTO>>> getAllCustomer() {
         Response<List<CustomerDTO>> response = new Response<>();
         HttpStatus httpStatus = HttpStatus.OK;
@@ -80,7 +80,7 @@ public class CustomerController {
         return responseEntity;
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping()
     public ResponseEntity<Response<CustomerDTO>> delete(@RequestBody CustomerDTO customerDTO) {
         Response<CustomerDTO> response = new Response<>();
         ResponseEntity<Response<CustomerDTO>> responseEntity;
@@ -119,19 +119,19 @@ public class CustomerController {
     }
 
     @PatchMapping(value = "/{id}", consumes = "application/json-patch+json")
-    public ResponseEntity<Response<CustomerEntity>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch customer) {
-        //Response<CustomerDTO> response = new Response<>();
-        //ResponseEntity<Response<CustomerDTO>> responseEntity;
+    public ResponseEntity<Response<CustomerDTO>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch customer) {
+        Response<CustomerDTO> response = new Response<>();
+        ResponseEntity<Response<CustomerDTO>> responseEntity;
         HttpStatus httpStatus = HttpStatus.OK;
-        //response.setData(new ArrayList<>());
+        response.setData(new ArrayList<>());
         try {
             patchUserUseCaseFacade.execute(id, customer);
-            //response.addData(CustomerDTO.create());
+            response.addMessage(Message.createSuccessMessage("The user has updated satisfactory", "Update Sucessfull"));
         } catch (CarpoolingCustomException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
-            //response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Vehicle updated correctly"));
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "user updated with patch correctly"));
         }
-        ResponseEntity responseEntity = new ResponseEntity<>(new CustomerEntity(), httpStatus);
+        responseEntity = new ResponseEntity<>(response, httpStatus);
         return responseEntity;
     }
 }

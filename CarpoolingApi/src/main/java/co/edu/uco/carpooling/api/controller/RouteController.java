@@ -34,9 +34,6 @@ public class RouteController {
     private RouteSaveUseCaseFacade routeSaveUseCaseFacade;
     @Autowired
     private RouteActiveUseCase routeActiveUseCase;
-    @Autowired
-    private RouteRepository repository;
-
     @PostMapping()
     public ResponseEntity<Response<RouteRequestDTO>> create(@RequestBody RouteRequestDTO route){
         Response<RouteRequestDTO> response = new Response<>();
@@ -107,13 +104,19 @@ public class RouteController {
     }
 
     @GetMapping("/active")
-    public ResponseEntity<List<RouteAvailableDTO>> findActiveRoute() {
+    public ResponseEntity<Response<List<RouteAvailableDTO>>> findActiveRoute() {
+        Response<List<RouteAvailableDTO>> response = new Response<>();
         List<RouteAvailableDTO> routes = new ArrayList<>();
+        HttpStatus httpStatus = HttpStatus.OK;
+        response.setData(new ArrayList<>());
         try {
             routes = routeActiveUseCase.execute(Optional.of(RouteAvailableDTO.build()));
-        } catch (GeneralException exception) {
+            response.addData(routes);
+        } catch (CarpoolingCustomException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(),"Error when trying to obtain active routes"));
             log.error(exception.getUserMessage());
         }
-        return new ResponseEntity<>(routes, HttpStatus.OK);
+        return new ResponseEntity<>(response, httpStatus);
     }
 }
