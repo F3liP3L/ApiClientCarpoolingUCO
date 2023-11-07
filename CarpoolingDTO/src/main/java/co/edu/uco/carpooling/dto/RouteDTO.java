@@ -21,14 +21,15 @@ public class RouteDTO {
     private List<String> pointOfInterest;
     private List<PositionDTO> positions;
     private LocalDateTime routeTime;
-
-    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDTO> positions, LocalDateTime routeTime) {
+    private String status;
+    public RouteDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity, List<String> pointOfInterest, List<PositionDTO> positions, LocalDateTime routeTime, String status) {
         setId(id);
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
         setPointOfInterest(pointOfInterest);
         setRouteTime(routeTime);
         setPositions(positions);
+        setStatus(status);
     }
 
     public RouteDTO() {
@@ -38,6 +39,7 @@ public class RouteDTO {
         setPointOfInterest(List.of(UtilText.EMPTY));
         setRouteTime(TIME);
         setPositions(new ArrayList<>());
+        setStatus(UtilText.EMPTY);
     }
 
     public UUID getId() {
@@ -78,12 +80,16 @@ public class RouteDTO {
     public void setPointOfInterest(List<String> pointOfInterest) {
         this.pointOfInterest = UtilObject.getUtilObject().getDefaultIsNull(pointOfInterest,List.of(UtilText.EMPTY));
     }
-
     public List<PositionDTO> getPositions() {
         return positions;
     }
     public void setPositions(List<PositionDTO> positions) {
         this.positions = UtilObject.getUtilObject().getDefaultIsNull(positions, new ArrayList<>());
     }
-
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = UtilText.getUtilText().trim(status);
+    }
 }

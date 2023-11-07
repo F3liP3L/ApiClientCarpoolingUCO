@@ -18,7 +18,7 @@ public class DriverCategoryValidSpecification extends CompositeSpecification<Dri
     @Override
     public boolean isSatisfyBy(DriverDomain object) {
         try {
-            Optional<DriverEntity> response = repository.getDriverByCustomer(object.getUser().getId());
+            Optional<DriverEntity> response = repository.getDriverByCustomer(object.getCustomer().getId());
             if (response.isPresent()) {
                 throw CarpoolingCustomException.buildUserException("Error try add driver, customer already exist");
             }

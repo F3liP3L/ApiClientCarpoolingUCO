@@ -31,12 +31,10 @@ public class RabbitMQConfig {
     public Queue requestRoute() {
         return new Queue(requestRouteQueue);
     }
-
     @Bean
     public Queue saveRoute() {
         return new Queue(saveRouteQueue);
     }
-
     @Bean
     public Queue createRoute() {
         return new Queue(responseCreateRouteQueue);

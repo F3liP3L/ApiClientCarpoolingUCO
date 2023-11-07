@@ -19,6 +19,6 @@ public class DriverEntity {
     private AuthorizedCategoryEntity authorizedCategory;
     @OneToOne
     @JoinColumn(name = "customer_id")
-    private CustomerEntity customerEntity;
+    private CustomerEntity customer;
 
 }
