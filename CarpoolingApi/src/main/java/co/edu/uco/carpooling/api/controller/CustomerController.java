@@ -4,7 +4,6 @@ import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.CustomerDTO;
-import co.edu.uco.carpooling.entity.CustomerEntity;
 import co.edu.uco.carpooling.service.facade.user.DeleteUserUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.user.PatchUserUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.user.RegisterUserCustomerCaseFacade;
@@ -26,7 +25,6 @@ import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 @RequestMapping("api/v1/carpooling/customer")
 @Slf4j
 public class CustomerController {
-
     @Autowired
     private RegisterUserCustomerCaseFacade userUseCaseFacade;
     @Autowired

@@ -1,7 +1,9 @@
 package co.edu.uco.carpooling.service.usecase.user.implementation;
 
 import co.edu.uco.carpooling.dto.CustomerDTO;
-import co.edu.uco.carpooling.service.mapper.entityassembler.impl.CustomerEntityAssembler;
+import co.edu.uco.carpooling.entity.CustomerEntity;
+import co.edu.uco.carpooling.service.domain.CustomerDomain;
+import co.edu.uco.carpooling.service.mapper.entityassembler.EntityAssembler;
 import co.edu.uco.carpooling.service.port.repository.CustomerRepository;
 import co.edu.uco.carpooling.service.usecase.user.ListCustomerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.Optional;
 @Service
 public class ListCustomerUseCaseImpl implements ListCustomerUseCase {
     @Autowired
-    private CustomerEntityAssembler entityAssembler;
+    private EntityAssembler<CustomerEntity, CustomerDomain, CustomerDTO> entityAssembler;
     @Autowired
     private CustomerRepository customerRepository;
 
