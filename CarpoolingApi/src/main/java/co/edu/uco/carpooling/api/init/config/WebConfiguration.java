@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/v1/carpooling/**")
+        registry.addMapping("/**")
                 .allowedOrigins("http://localhost:4200")
                 .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(),
                         HttpMethod.PUT.name(), HttpMethod.PATCH.name(), HttpMethod.DELETE.name());
