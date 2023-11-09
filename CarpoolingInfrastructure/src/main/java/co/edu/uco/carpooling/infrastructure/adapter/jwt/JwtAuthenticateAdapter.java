@@ -33,12 +33,12 @@ public class JwtAuthenticateAdapter  implements PortAuthentication {
     public JwtResponse signIn(JwtRequest request) {
             try {
                 authenticationManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+                        new UsernamePasswordAuthenticationToken(request.getCompanyEmail(), request.getPassword()));
             } catch (BadCredentialsException exception) {
                 throw CarpoolingCustomException.buildUserException("The credentials entered are incorrect.");
             }
             final UserDetails userDetails = userInformationDetailsService
-                .loadUserByUsername(request.getEmail());
+                .loadUserByUsername(request.getCompanyEmail());
             final String jwt = tokenService.generateToken(userDetails.getUsername());
             return new JwtResponse(jwt);
     }
