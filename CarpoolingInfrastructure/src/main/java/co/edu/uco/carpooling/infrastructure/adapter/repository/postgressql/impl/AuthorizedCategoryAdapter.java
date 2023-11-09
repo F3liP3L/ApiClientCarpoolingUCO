@@ -11,7 +11,11 @@ import java.util.UUID;
 
 @Service
 public class AuthorizedCategoryAdapter implements AuthorizedCategoryRepository {
-    private AuthorizedCategoryPostgresSQL categoryRepository;
+    private final AuthorizedCategoryPostgresSQL categoryRepository;
+    public AuthorizedCategoryAdapter(AuthorizedCategoryPostgresSQL categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
     @Override
     public List<AuthorizedCategoryEntity> findAll() {
         return categoryRepository.findAll();

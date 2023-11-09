@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +26,13 @@ public class AuthorizedCategoryController {
     @Autowired
     private ListAuthorizedCategoryAllUseCase listAuthorizedCategoryAllUseCase;
 
-    @GetMapping("/")
-    public ResponseEntity<Response<List<AuthorizedCategoryDTO>>> getOneAuthorizedCategory(@RequestParam UUID uuid) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Response<List<AuthorizedCategoryDTO>>> getOneAuthorizedCategory(@PathVariable UUID id) {
         Response<List<AuthorizedCategoryDTO>> response = new Response<>();
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            response.addData(listAuthorizedCategoryUseCase.execute(Optional.of(AuthorizedCategoryDTO.create(uuid))));
+            response.addData(listAuthorizedCategoryUseCase.execute(Optional.of(AuthorizedCategoryDTO.create(id))));
         } catch (GeneralException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected error"));
@@ -43,7 +40,7 @@ public class AuthorizedCategoryController {
         return new ResponseEntity<>(response, httpStatus);
     }
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<Response<List<AuthorizedCategoryDTO>>> getAllAuthorizedCategory() {
         Response<List<AuthorizedCategoryDTO>> response = new Response<>();
         HttpStatus httpStatus = HttpStatus.OK;
