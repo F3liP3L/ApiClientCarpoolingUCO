@@ -35,4 +35,3 @@ api-client:
       save-routing-key: save-route.save.rk
   exchange:
     route: route.ex
-

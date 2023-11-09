@@ -6,6 +6,8 @@ import co.edu.uco.carpooling.service.port.repository.AuthorizedCategoryRepositor
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AuthorizedCategoryAdapter implements AuthorizedCategoryRepository {
@@ -13,5 +15,10 @@ public class AuthorizedCategoryAdapter implements AuthorizedCategoryRepository {
     @Override
     public List<AuthorizedCategoryEntity> findAll() {
         return categoryRepository.findAll();
+    }
+
+    @Override
+    public Optional<AuthorizedCategoryEntity> findById(UUID uuid) {
+        return categoryRepository.findById(uuid);
     }
 }
