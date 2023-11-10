@@ -8,7 +8,6 @@ import co.edu.uco.carpooling.dto.requestroute.RouteAvailableDTO;
 import co.edu.uco.carpooling.dto.requestroute.RouteRequestDTO;
 import co.edu.uco.carpooling.service.facade.route.RouteSaveUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.routerequest.CreateRouteUseCaseFacade;
-import co.edu.uco.carpooling.service.port.repository.RouteRepository;
 import co.edu.uco.carpooling.service.usecase.route.FindRouteCreateUseCase;
 import co.edu.uco.carpooling.service.usecase.route.RouteActiveUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
@@ -90,7 +89,7 @@ public class RouteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Response<RouteDTO>> findRouteCreate(@PathVariable UUID id) {
+    public ResponseEntity<Response<RouteDTO>> findRouteId(@PathVariable UUID id) {
         Response<RouteDTO> response = new Response<>();
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());

@@ -27,7 +27,7 @@ public class AuthorizedCategoryController {
     private ListAuthorizedCategoryAllUseCase listAuthorizedCategoryAllUseCase;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Response<List<AuthorizedCategoryDTO>>> getOneAuthorizedCategory(@PathVariable UUID id) {
+    public ResponseEntity<Response<List<AuthorizedCategoryDTO>>> getOneAuthorizedCategory(@PathVariable("id") UUID id) {
         Response<List<AuthorizedCategoryDTO>> response = new Response<>();
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());

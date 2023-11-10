@@ -12,6 +12,10 @@ public class DriverDTO {
     private AuthorizedCategoryDTO authorizedCategory;
     private CustomerDTO customer;
 
+    public DriverDTO(UUID id) {
+        setId(id);
+    }
+
     public UUID getId() {
         return id;
     }
