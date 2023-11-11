@@ -22,8 +22,18 @@ public class AuthorizedCategoryDTO {
         setExpiration(UtilText.EMPTY);
     }
 
+    public AuthorizedCategoryDTO(UUID uuid) {
+        setId(uuid);
+        setCategory(UtilText.EMPTY);
+        setExpiration(UtilText.EMPTY);
+    }
+
     public static AuthorizedCategoryDTO createNewAuthorizedCategory() {
         return new AuthorizedCategoryDTO();
+    }
+
+    public static AuthorizedCategoryDTO create(UUID id) {
+        return new AuthorizedCategoryDTO(id);
     }
 
     public UUID getId() {

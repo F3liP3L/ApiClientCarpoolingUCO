@@ -12,10 +12,8 @@ import java.util.UUID;
 
 @Service
 public class DriverPerVehicleRepositoryAdapter implements DriverPerVehicleRepository {
-
     @Autowired
     private DriverPerVehicleRepositoryPostgresSQL repositoryPostgresSQL;
-
 
     @Override
     public Optional<DriverPerVehicleEntity> findDriverPerVehicleEntityById(UUID id) {
@@ -25,6 +23,11 @@ public class DriverPerVehicleRepositoryAdapter implements DriverPerVehicleReposi
     @Override
     public Optional<DriverPerVehicleEntity> getVehicleByDriver(UUID idDriver) {
         return repositoryPostgresSQL.findDriverPerVehicleEntityByDriver_Id(idDriver);
+    }
+
+    @Override
+    public List<DriverPerVehicleEntity> findAll() {
+        return repositoryPostgresSQL.findAll();
     }
 
     @Override

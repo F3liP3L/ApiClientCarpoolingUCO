@@ -22,9 +22,9 @@ public class ListDriverPerVehicleUseCaseImpl implements ListDriverPerVehicleUseC
     @Override
     public List<DriverPerVehicleDTO> execute(Optional<DriverPerVehicleDTO> dto) {
         if (dto.isEmpty()) {
-            throw CarpoolingCustomException.buildTechnicalException("Can not find the customer, please try again");
+            throw CarpoolingCustomException.buildTechnicalException("Can not find the driver per vehicle, please try again");
         }
-        return repository.getVehicleByDriver(dto.get().getDriver().getId())
-                .map(driverPerVehicleEntity -> entityAssembler.assembleDTO(driverPerVehicleEntity)).stream().toList();
+        return repository.findAll().stream()
+                .map(driverPerVehicleEntity -> entityAssembler.assembleDTO(driverPerVehicleEntity)).toList();
     }
 }

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class AuthenticationController {
     @Autowired
     private PortAuthentication authenticateAdapter;
-
     @PostMapping("/signin")
     public ResponseEntity<Response<JwtResponse>> signIn(@RequestBody JwtRequest request) {
         ResponseEntity<Response<JwtResponse>> responseEntity;
@@ -33,13 +32,11 @@ public class AuthenticationController {
         try {
             JwtResponse token = authenticateAdapter.signIn(request);
             response.addData(token);
-
         } catch (CarpoolingCustomException exception) {
-            httpStatus = HttpStatus.BAD_REQUEST;
+            httpStatus = HttpStatus.UNAUTHORIZED;
             response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Error controller JWT"));
         }
         responseEntity = new ResponseEntity<>(response, httpStatus);
         return responseEntity;
     }
-
 }

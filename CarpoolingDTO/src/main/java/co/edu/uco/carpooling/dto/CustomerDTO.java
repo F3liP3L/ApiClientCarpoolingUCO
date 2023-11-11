@@ -13,10 +13,10 @@ public class CustomerDTO {
     private String secondName;
     private String firstSurname;
     private String secondSurname;
-    private static String password;
-    private static String companyEmail;
+    private String password;
+    private String companyEmail;
     private int phone;
-    private static int rol;
+    private int rol;
 
     public CustomerDTO(UUID id, String dni, String firstName, String secondName, String firstSurname,
                        String secondSurname, String password, String companyEmail, int phone, int rol) {
@@ -54,11 +54,6 @@ public class CustomerDTO {
     public static CustomerDTO create() {
         return new CustomerDTO();
     }
-
-    public static CustomerDTO createPatch() {
-        return new CustomerDTO(password, companyEmail, rol);
-    }
-
     public void setId(UUID id) {
         this.id = UtilUUID.getDefaultUUID(id);
     }

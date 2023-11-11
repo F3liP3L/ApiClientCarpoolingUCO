@@ -21,8 +21,17 @@ public class StatusDTO {
         setStatus(EMPTY);
     }
 
+    public StatusDTO(UUID id) {
+        setId(id);
+        setStatus(EMPTY);
+    }
+
     public static StatusDTO createNewStatus() {
         return new StatusDTO();
+    }
+
+    public static StatusDTO create(UUID uuid) {
+        return new StatusDTO(uuid);
     }
 
     public UUID getId() {

@@ -59,4 +59,11 @@ public class DriverPerVehicleDTO {
     public static DriverPerVehicleDTO create() {
         return new DriverPerVehicleDTO();
     }
+
+    public static DriverPerVehicleDTO create(UUID id) {
+        DriverDTO driver = new DriverDTO(id);
+        DriverPerVehicleDTO driverPerVehicleDTO = DriverPerVehicleDTO.create();
+        driverPerVehicleDTO.setDriver(driver);
+        return driverPerVehicleDTO;
+    }
 }

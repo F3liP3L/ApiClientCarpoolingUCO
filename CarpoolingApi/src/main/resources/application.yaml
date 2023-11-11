@@ -1,8 +1,8 @@
 spring:
   cloud:
     vault:
-      uri: url:8200
-      token: 7u7
+      uri: uri:8200
+      token: 7U7
   config:
     import: vault://cubbyhole/manager-user-microservice
   datasource:
@@ -35,4 +35,3 @@ api-client:
       save-routing-key: save-route.save.rk
   exchange:
     route: route.ex
-

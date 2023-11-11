@@ -4,10 +4,10 @@ import co.edu.uco.carpooling.api.response.Response;
 import co.edu.uco.carpooling.api.response.dto.Message;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.dto.DriverPerVehicleDTO;
-import co.edu.uco.carpooling.dto.VehicleDTO;
 import co.edu.uco.carpooling.service.facade.driverpervehicle.DeleteDriverPerVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.driverpervehicle.RegisterDriverPerVehicleUseCaseFacade;
 import co.edu.uco.carpooling.service.facade.driverpervehicle.UpdateDriverPerVehicleUseCaseFacade;
+import co.edu.uco.carpooling.service.usecase.driverpervehicle.FindDriverPerVehicleUseCase;
 import co.edu.uco.carpooling.service.usecase.driverpervehicle.ListDriverPerVehicleUseCase;
 import co.edu.uco.crosscutting.exception.GeneralException;
 import lombok.extern.slf4j.Slf4j;
@@ -33,14 +33,31 @@ public class DriverPerVehicleController {
     private UpdateDriverPerVehicleUseCaseFacade updateDriverPerVehicleUseCaseFacade;
     @Autowired
     private ListDriverPerVehicleUseCase listDriverPerVehicleUseCase;
+    @Autowired
+    private FindDriverPerVehicleUseCase findDriverPerVehicleUseCase;
 
-    @GetMapping
-    public ResponseEntity<Response<List<DriverPerVehicleDTO>>> findAll(@RequestBody DriverPerVehicleDTO driverPerVehicleDTO) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Response<DriverPerVehicleDTO>> findById(@PathVariable UUID id) {
+        Response<DriverPerVehicleDTO> response = new Response<>();
+        HttpStatus httpStatus = HttpStatus.OK;
+        response.setData(new ArrayList<>());
+        try {
+            response.addData(findDriverPerVehicleUseCase.execute(id));
+        } catch (GeneralException exception) {
+            httpStatus = HttpStatus.BAD_REQUEST;
+            response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "The Unexpected error, try to " +
+                    "get driver per vehicle by id"));
+        }
+        return new ResponseEntity<>(response, httpStatus);
+    }
+
+    @GetMapping()
+    public ResponseEntity<Response<List<DriverPerVehicleDTO>>> findAll( ) {
         Response<List<DriverPerVehicleDTO>> response = new Response<>();
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
         try {
-            response.addData(listDriverPerVehicleUseCase.execute(Optional.of(driverPerVehicleDTO)));
+            response.addData(listDriverPerVehicleUseCase.execute(Optional.of(DriverPerVehicleDTO.create())));
         } catch (GeneralException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected error, try to " +
@@ -49,7 +66,7 @@ public class DriverPerVehicleController {
         return new ResponseEntity<>(response, httpStatus);
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Response<DriverPerVehicleDTO>> create(@RequestBody DriverPerVehicleDTO driverPerVehicleDTO) {
         Response<DriverPerVehicleDTO> response = new Response<>();
         ResponseEntity<Response<DriverPerVehicleDTO>> responseEntity;
@@ -79,7 +96,7 @@ public class DriverPerVehicleController {
         return responseEntity;
     }
 
-    @DeleteMapping
+    @DeleteMapping()
     public ResponseEntity<Response<DriverPerVehicleDTO>> delete(@RequestBody DriverPerVehicleDTO driverPerVehicleDTO) {
         Response<DriverPerVehicleDTO> response = new Response<>();
         ResponseEntity<Response<DriverPerVehicleDTO>> responseEntity;
