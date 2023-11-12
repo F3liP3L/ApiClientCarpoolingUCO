@@ -102,9 +102,12 @@ public class VehicleController {
     @PatchMapping(value = "/{id}", consumes ="application/json-patch+json")
     public ResponseEntity<Response<VehicleDTO>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
         Response<VehicleDTO> response = new Response<>();
+        log.warn("Hasta aca melo 1");
         ResponseEntity<Response<VehicleDTO>> responseEntity;
+        log.warn("Hasta aca melo 2");
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
+
         try {
             VehicleDTO dto = VehicleDTO.create();
             facadeUpdate.execute(id,vehicle,dto);
@@ -113,6 +116,7 @@ public class VehicleController {
         } catch (CarpoolingCustomException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createErrorMessage(exception.getUserMessage(), "Your vehicle could not be upgraded."));
+            log.error(response.toString());
         } catch (GeneralException exception) {
             httpStatus = HttpStatus.BAD_REQUEST;
             response.addMessage(Message.createFatalMessage(exception.getUserMessage(), "The Unexpected Error"));

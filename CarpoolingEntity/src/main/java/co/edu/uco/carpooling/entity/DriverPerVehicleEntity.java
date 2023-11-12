@@ -13,12 +13,8 @@ public class DriverPerVehicleEntity {
     @Column(name = "id")
     private UUID id;
     @ManyToOne
-    @JoinColumn(name = "driver_id")
-    private DriverEntity driver;
-    @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private VehicleEntity vehicle;
-
     @ManyToOne
     @JoinColumn(name = "state")
     private StatusEntity status;

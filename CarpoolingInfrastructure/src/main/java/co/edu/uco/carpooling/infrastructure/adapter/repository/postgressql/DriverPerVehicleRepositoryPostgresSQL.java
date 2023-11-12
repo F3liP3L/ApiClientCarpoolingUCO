@@ -10,5 +10,4 @@ import java.util.UUID;
 @Repository
 public interface DriverPerVehicleRepositoryPostgresSQL extends JpaRepository<DriverPerVehicleEntity, UUID> {
     Optional<DriverPerVehicleEntity> findDriverPerVehicleEntityById(UUID id);
-    Optional<DriverPerVehicleEntity> findDriverPerVehicleEntityByDriver_Id(UUID idDrive);
 }

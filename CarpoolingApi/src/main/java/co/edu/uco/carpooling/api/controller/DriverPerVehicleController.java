@@ -21,9 +21,10 @@ import java.util.*;
 
 import static co.edu.uco.crosscutting.util.UtilObject.getUtilObject;
 
-@Slf4j
+
 @RestController
 @RequestMapping("api/v1/carpooling/driverpervehicle")
+@Slf4j
 public class DriverPerVehicleController {
     @Autowired
     private RegisterDriverPerVehicleUseCaseFacade registerDriverPerVehicleUseCaseFacade;
