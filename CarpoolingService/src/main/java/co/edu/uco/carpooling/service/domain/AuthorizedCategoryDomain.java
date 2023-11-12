@@ -13,18 +13,14 @@ import static co.edu.uco.crosscutting.util.UtilUUID.getNewUUID;
 public class AuthorizedCategoryDomain {
     private UUID id;
     private String category;
-    private String expiration;
-
-    public AuthorizedCategoryDomain(UUID id, String category, String expiration) {
+    public AuthorizedCategoryDomain(UUID id, String category) {
         setId(id);
         setCategory(category);
-        setExpiration(expiration);
     }
 
     public AuthorizedCategoryDomain() {
         setId(UtilUUID.DEFAULT_UUID);
         setCategory(UtilText.EMPTY);
-        setExpiration(UtilText.EMPTY);
     }
 
     public static AuthorizedCategoryDomain createNewAuthorizedCategory() {
@@ -37,9 +33,5 @@ public class AuthorizedCategoryDomain {
 
     public void setCategory(String category) {
         this.category = UtilText.getUtilText().trim(category);
-    }
-
-    public void setExpiration(String expiration) {
-        this.expiration = UtilText.getUtilText().trim(expiration);
     }
 }

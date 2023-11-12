@@ -7,13 +7,11 @@ import java.util.UUID;
 
 public class DriverPerVehicleDTO {
     private UUID id;
-    private DriverDTO driver;
     private VehicleDTO vehicle;
     private StatusDTO status;
 
-    public DriverPerVehicleDTO(UUID id, DriverDTO driver, VehicleDTO vehicle, StatusDTO status) {
+    public DriverPerVehicleDTO(UUID id, VehicleDTO vehicle, StatusDTO status) {
         setId(id);
-        setDriver(driver);
         setVehicle(vehicle);
         setStatus(status);
     }
@@ -21,7 +19,6 @@ public class DriverPerVehicleDTO {
     public DriverPerVehicleDTO() {
         setId(UtilUUID.getNewUUID());
         setVehicle(VehicleDTO.create());
-        setDriver(DriverDTO.create());
         setStatus(StatusDTO.createNewStatus());
     }
 
@@ -31,14 +28,6 @@ public class DriverPerVehicleDTO {
 
     public void setId(UUID id) {
         this.id = UtilUUID.getDefaultUUID(id);
-    }
-
-    public DriverDTO getDriver() {
-        return driver;
-    }
-
-    public void setDriver(DriverDTO driver) {
-        this.driver = UtilObject.getUtilObject().getDefaultIsNull(driver,DriverDTO.create());
     }
 
     public VehicleDTO getVehicle() {
@@ -63,7 +52,6 @@ public class DriverPerVehicleDTO {
     public static DriverPerVehicleDTO create(UUID id) {
         DriverDTO driver = new DriverDTO(id);
         DriverPerVehicleDTO driverPerVehicleDTO = DriverPerVehicleDTO.create();
-        driverPerVehicleDTO.setDriver(driver);
         return driverPerVehicleDTO;
     }
 }

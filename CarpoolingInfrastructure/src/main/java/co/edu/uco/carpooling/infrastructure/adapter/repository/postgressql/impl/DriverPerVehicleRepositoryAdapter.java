@@ -21,11 +21,6 @@ public class DriverPerVehicleRepositoryAdapter implements DriverPerVehicleReposi
     }
 
     @Override
-    public Optional<DriverPerVehicleEntity> getVehicleByDriver(UUID idDriver) {
-        return repositoryPostgresSQL.findDriverPerVehicleEntityByDriver_Id(idDriver);
-    }
-
-    @Override
     public List<DriverPerVehicleEntity> findAll() {
         return repositoryPostgresSQL.findAll();
     }

@@ -16,6 +16,4 @@ public class AuthorizedCategoryEntity {
     private UUID id;
     @Column(name = "category")
     private String category;
-    @Column(name = "expiration")
-    private String expiration;
 }
