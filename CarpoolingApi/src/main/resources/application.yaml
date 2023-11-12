@@ -2,7 +2,7 @@ spring:
   cloud:
     vault:
       uri: uri:8200
-      token: 7U7
+      token: 12
   config:
     import: vault://cubbyhole/manager-user-microservice
   datasource:

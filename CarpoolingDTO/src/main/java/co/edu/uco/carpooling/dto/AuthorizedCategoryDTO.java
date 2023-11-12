@@ -8,24 +8,19 @@ import java.util.UUID;
 public class AuthorizedCategoryDTO {
     private UUID id;
     private String category;
-    private String expiration;
-
-    public AuthorizedCategoryDTO(UUID id, String category, String expiration) {
+    public AuthorizedCategoryDTO(UUID id, String category) {
         setId(id);
         setCategory(category);
-        setExpiration(expiration);
     }
 
     public AuthorizedCategoryDTO() {
         setId(UtilUUID.DEFAULT_UUID);
         setCategory(UtilText.EMPTY);
-        setExpiration(UtilText.EMPTY);
     }
 
     public AuthorizedCategoryDTO(UUID uuid) {
         setId(uuid);
         setCategory(UtilText.EMPTY);
-        setExpiration(UtilText.EMPTY);
     }
 
     public static AuthorizedCategoryDTO createNewAuthorizedCategory() {
@@ -52,11 +47,4 @@ public class AuthorizedCategoryDTO {
         this.category = UtilText.getUtilText().trim(category);
     }
 
-    public String getExpiration() {
-        return expiration;
-    }
-
-    public void setExpiration(String expiration) {
-        this.expiration = UtilText.getUtilText().trim(expiration);
-    }
 }

@@ -35,10 +35,13 @@ public class UpdateVehicleUseCaseFacadeImpl implements UpdateVehicleUseCaseFacad
         if (response.isEmpty()) {
             throw CarpoolingCustomException.buildTechnicalException("There is no vehicle with the submitted identifier.");
         }
+        log.warn("Si existe el vehiculo. pero el pacth pailas");
         VehicleEntity vehicle = jsonPatchMapper.apply(response.get(), json);
+        log.warn("El patch funciona");
         VehicleDTO vehicleDTO = entityAssembler.assembleDTO(vehicle);
         dto.setCapacity(vehicleDTO.getCapacity());
         isSatisfyBy(vehicle);
+        log.error("Entramos!!!");
         vehicleRepository.save(vehicle);
     }
 

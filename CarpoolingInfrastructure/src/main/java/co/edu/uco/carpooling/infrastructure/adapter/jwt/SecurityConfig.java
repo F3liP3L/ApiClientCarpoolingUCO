@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/carpooling/auth/**")
                         .permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/v1/carpooling/customer","/api/v1/carpooling/driver").permitAll()
+                        .requestMatchers(HttpMethod.GET, "api/v1/carpooling/authorizedcategory/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(jwtAuthenticationEntryPoint))

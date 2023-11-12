@@ -21,7 +21,7 @@ public class FindDriverPerVehicleUseCaseImpl implements FindDriverPerVehicleUseC
     private EntityAssembler<DriverPerVehicleEntity, DriverPerVehicleDomain, DriverPerVehicleDTO> entityAssembler;
     @Override
     public DriverPerVehicleDTO execute(UUID id) {
-        Optional<DriverPerVehicleEntity> response = driverPerVehicleRepository.getVehicleByDriver(id);
+        Optional<DriverPerVehicleEntity> response = driverPerVehicleRepository.findDriverPerVehicleEntityById(id);
         if (response.isEmpty()) {
             throw CarpoolingCustomException.buildUserException("The driver per vehicle with the sent id does not exist");
         }
