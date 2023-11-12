@@ -1,5 +1,6 @@
 package co.edu.uco.carpooling.infrastructure.adapter.jwt;
 
+import co.edu.uco.carpooling.entity.DriverEntity;
 import co.edu.uco.carpooling.infrastructure.adapter.jwt.model.UserInformationDetailsService;
 import co.edu.uco.carpooling.crosscutting.exception.CarpoolingCustomException;
 import co.edu.uco.carpooling.entity.CustomerEntity;
@@ -7,6 +8,7 @@ import co.edu.uco.carpooling.service.model.JwtRequest;
 import co.edu.uco.carpooling.service.model.JwtResponse;
 import co.edu.uco.carpooling.service.port.jwt.PortAuthentication;
 import co.edu.uco.carpooling.service.port.repository.CustomerRepository;
+import co.edu.uco.carpooling.service.port.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,6 +28,8 @@ public class JwtAuthenticateAdapter  implements PortAuthentication {
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
+    private DriverRepository driverRepository;
+    @Autowired
     private JwtTokenService tokenService;
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -44,8 +48,14 @@ public class JwtAuthenticateAdapter  implements PortAuthentication {
     }
 
     @Override
-    public void signUp(CustomerEntity request) {
+    public void customerSignUp(CustomerEntity request) {
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         customerRepository.save(request);
+    }
+
+    @Override
+    public void driverSignUp(DriverEntity request) {
+        request.getCustomer().setPassword(passwordEncoder.encode(request.getCustomer().getPassword()));
+        driverRepository.save(request);
     }
 }

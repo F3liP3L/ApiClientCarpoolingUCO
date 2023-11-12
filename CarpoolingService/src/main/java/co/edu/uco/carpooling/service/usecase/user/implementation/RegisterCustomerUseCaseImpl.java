@@ -25,6 +25,6 @@ public class RegisterCustomerUseCaseImpl implements RegisterCustomerUseCase {
         domain.setId(UtilUUID.getNewUUID());
         validCustomerSpecification.isSatisfyBy(domain);
         CustomerEntity customerEntity = assemblerService.assembleEntity(domain);
-        portAuthentication.signUp(customerEntity);
+        portAuthentication.customerSignUp(customerEntity);
     }
 }

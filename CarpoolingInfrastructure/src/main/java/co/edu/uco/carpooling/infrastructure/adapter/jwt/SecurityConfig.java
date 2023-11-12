@@ -40,7 +40,7 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/carpooling/auth/**")
                         .permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/v1/carpooling/customer").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/v1/carpooling/customer","/api/v1/carpooling/driver").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(jwtAuthenticationEntryPoint))
