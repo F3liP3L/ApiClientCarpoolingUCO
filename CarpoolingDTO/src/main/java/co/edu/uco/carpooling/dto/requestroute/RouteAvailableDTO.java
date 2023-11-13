@@ -15,10 +15,12 @@ public class RouteAvailableDTO {
     private PositionDTO origin;
     private PositionDTO destination;
 
-    public RouteAvailableDTO(UUID id, DriverPerVehicleDTO driverVehicle, int routeCapacity) {
+    public RouteAvailableDTO(UUID id, DriverPerVehicleDTO driverVehicle, PositionDTO origin, PositionDTO destination, int routeCapacity) {
         setId(UtilUUID.getDefaultUUID(id));
         setDriverVehicle(driverVehicle);
         setRouteCapacity(routeCapacity);
+        setOrigin(origin);
+        setDestination(destination);
     }
 
     public RouteAvailableDTO() {
