@@ -101,14 +101,10 @@ public class VehicleController {
 
     @PatchMapping(value = "/{id}", consumes ="application/json-patch+json")
     public ResponseEntity<Response<VehicleDTO>> update(@PathVariable("id") UUID id, @RequestBody JsonPatch vehicle) {
-        log.warn("Tenemos problemaaaaaaaas!!");
         Response<VehicleDTO> response = new Response<>();
-        log.warn("Hasta aca melo 1");
         ResponseEntity<Response<VehicleDTO>> responseEntity;
-        log.warn("Hasta aca melo 2");
         HttpStatus httpStatus = HttpStatus.OK;
         response.setData(new ArrayList<>());
-
         try {
             VehicleDTO dto = VehicleDTO.create();
             facadeUpdate.execute(id,vehicle,dto);
