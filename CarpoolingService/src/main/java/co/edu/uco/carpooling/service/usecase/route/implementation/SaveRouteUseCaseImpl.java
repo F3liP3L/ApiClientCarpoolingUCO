@@ -35,6 +35,10 @@ public class SaveRouteUseCaseImpl implements SaveRouteUseCase {
             RouteEntity route = entityAssembler.assembleEntity(domain);
             Optional<String> response = mapperJson.execute(domain.getPositions());
             response.ifPresent(route::setPositions);
+            Optional<String> origin = mapperJson.execute(domain.getPositions().get(0));
+            origin.ifPresent(route::setOrigin);
+            Optional<String> destination = mapperJson.execute(domain.getPositions().get(domain.getPositions().size()-1));
+            destination.ifPresent(route::setDestination);
             routeRepository.save(route);
             senderRouteSavePort.execute(domain, domain.getId().toString());
         } catch (CarpoolingCustomException exception) {

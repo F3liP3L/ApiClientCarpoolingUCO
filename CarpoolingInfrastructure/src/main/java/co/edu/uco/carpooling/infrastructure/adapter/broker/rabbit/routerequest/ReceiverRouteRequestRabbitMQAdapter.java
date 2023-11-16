@@ -38,6 +38,10 @@ public class ReceiverRouteRequestRabbitMQAdapter implements ReceiverRouteCreateP
         route.setStatus("Creada");
         Optional<String> response = mapperJson.execute(routeDomain.getPositions());
         response.ifPresent(route::setPositions);
+        Optional<String> origin = mapperJson.execute(routeDomain.getPositions().get(0));
+        origin.ifPresent(route::setOrigin);
+        Optional<String> destination = mapperJson.execute(routeDomain.getPositions().get(routeDomain.getPositions().size()-1));
+        destination.ifPresent(route::setDestination);
         log.info(route.toString());
         routeRepository.save(route);
     }

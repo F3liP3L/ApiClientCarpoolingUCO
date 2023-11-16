@@ -25,6 +25,8 @@ public class RouteEntity {
     @CollectionTable(name = "point_of_interest", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "pointOfInterest")
     private List<String> pointOfInterest;
+    private String origin;
+    private String destination;
     @Lob
     private String positions;
     private LocalDateTime routeTime;
