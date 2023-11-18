@@ -21,4 +21,5 @@ public class DriverEntity {
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
 
+
 }
